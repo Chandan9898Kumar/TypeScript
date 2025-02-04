@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Header from "../../Components/Header/Header";
 const URL = "https://dummyjson.com/products";
 
 // First, define an interface for your product data
@@ -61,10 +61,10 @@ const Carousel: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1 style={{ textAlign: "center" }}>Carousel</h1>
+    <>
+      <Header title="Carousel" className="customH1Tag" />
       <Images imageData={data} />
-    </div>
+    </>
   );
 };
 
@@ -85,7 +85,8 @@ const Images: React.FC<CarouselOptions> = ({ imageData }) => {
 
   const handlePrevImage = (): void => {
     document.startViewTransition(() => {
-      setCurrentIndex((prev) => (prev - 1 + imageData.length) % imageData.length
+      setCurrentIndex(
+        (prev) => (prev - 1 + imageData.length) % imageData.length
       );
     });
   };
@@ -113,7 +114,7 @@ const Images: React.FC<CarouselOptions> = ({ imageData }) => {
         </span>
         <img
           src={imageData[currentIndex]?.images[0]}
-          alt="carousel-image"
+          alt={`${imageData[currentIndex]?.title ?? "Image-Carousel"}`}
           loading="eager"
           width="400"
           height="300"

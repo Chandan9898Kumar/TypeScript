@@ -3,6 +3,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --bg-color:#FFFFFF;
-  --text-color:plum
+  --bg-color: #ffffff;
+  --text-color: plum;
+  --head-color: plum;
+  --text-transform: uppercase;
 }
