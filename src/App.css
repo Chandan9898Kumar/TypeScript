@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  top: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  text-transform: capitalize;
+  font-family: "Luckiest Guy", cursive;
+  letter-spacing: 2px;
+  text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.4); 
+}
+
+img {
+  width: 500px;
+  height: 300px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: aliceblue;
+  border-radius: 20px;
+}
+
+.image-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image-button {
+  cursor: pointer;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 10px 10px;
+}
