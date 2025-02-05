@@ -62,12 +62,34 @@ CMD [ "npm", "run", "dev" ]
 
 
 #                                C. Additional useful flags you might want to use:
-# docker run -it --rm -p 3000:3000 --name typescript-app typescript
+# docker run -it -d -v --rm -p 3000:3000 --name typescript-app typescript 
 
-    # --rm: Automatically remove the container when it exits
+# --rm: Automatically remove the container when it exits
 
-    # -d: Run in detached mode (background)
+# -it:  if you want to interact with the container
 
-    # --name: Give your container a specific name
+# -d: Run in detached mode (  if you want to run it in the background )
 
-    # -v: Mount a volume ( A volume mount in Docker creates a way to persist and share data between the container and the host system, or between multiple containers. )
+# --name: Give your container a specific name
+
+# -v: Mount a volume ( A volume mount in Docker creates a way to persist and share data between the container and the host system ( User Machine ), or between multiple containers. )
+
+
+#  NOTE: 
+#  That you can't use both interactive terminal ( -it) and detached mode ( -d) effectively at the same time since they serve opposite purposes - one is for interaction and the other is for background running. Choose the one that better suits your needs:
+# Improved : # docker run -it  -v --rm -p 3000:3000 --name typescript-app typescript 
+
+#                                     Networking In Docker :
+# 1. Bridge Networking
+# Bridge networking is the default network driver in Docker. When you create a container, it is automatically connected to a bridge network unless you specify otherwise. This network allows containers to communicate with each other through a virtual bridge that Docker creates on the host machine.
+# Command : docker network inspect bridge
+
+#  Containers on the same bridge network can communicate with each other using their container names as hostnames.
+
+
+# 2. Host Networking
+# Host networking removes the network isolation between the Docker container and the Docker host. When you use host networking, the container shares the host's network stack and can directly access the host's network interfaces.
+
+#  In this mode, the container will use the host's IP address and ports.
+
+#  Note : In Host Networking, while running the container we don't need to set port like : -p 3000:3000 ( Because our host machine and docker container are on the same network )
