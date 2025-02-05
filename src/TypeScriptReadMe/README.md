@@ -646,3 +646,136 @@ const Data:Product<string , number>={
 
 console.log(Data)
 ```
+
+4. Creating Flexible Component Props
+
+```ts
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+  onItemClick?: (item: T) => void;
+}
+
+// Usage in a React component
+function List<T>({ items, renderItem, onItemClick }: ListProps<T>) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index} onClick={() => onItemClick?.(item)}>
+          {renderItem(item)}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Using the component
+interface User {
+  id: number;
+  name: string;
+}
+
+const UserList = () => {
+  const users: User[] = [
+    { id: 1, name: "John" },
+    { id: 2, name: "Jane" },
+  ];
+
+  return (
+    <List<User>
+      items={users}
+      renderItem={(user) => <span>{user.name}</span>}
+      onItemClick={(user) => console.log(`Clicked ${user.name}`)}
+    />
+  );
+};
+```
+
+5. Creating Reusable Data Structures
+
+```ts
+// Generic interface for API responses
+interface ApiResponse<T> {
+  data: T;
+  status: number;
+  message: string;
+  timestamp: Date;
+}
+
+// Usage with different data types
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+}
+
+// User API response
+const userResponse: ApiResponse<User> = {
+  data: { id: 1, name: "John", email: "john@example.com" },
+  status: 200,
+  message: "Success",
+  timestamp: new Date(),
+};
+
+// Product API response
+const productResponse: ApiResponse<Product> = {
+  data: { id: 1, title: "Phone", price: 599 },
+  status: 200,
+  message: "Success",
+  timestamp: new Date(),
+};
+```
+
+6. Creating Type-Safe Collections
+
+```ts
+interface Collection<T> {
+  items: T[];
+  add(item: T): void;
+  remove(item: T): void;
+  getItem(index: number): T;
+}
+
+// Implementation for numbers
+class NumberCollection implements Collection<number> {
+  items: number[] = [];
+
+  add(item: number): void {
+    this.items.push(item);
+  }
+
+  remove(item: number): void {
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+    }
+  }
+
+  getItem(index: number): number {
+    return this.items[index];
+  }
+}
+
+// Usage
+const numbers = new NumberCollection();
+numbers.add(1);
+numbers.add(2);
+```
+
+### When to Use Generic Interfaces:
+
+1. Data Structures : When creating reusable data structures that should work with different types
+
+2. API Responses : When handling API responses with different data shapes
+
+3. Component Props : When building reusable UI components that can work with different data types
+
+4. State Management : When managing state that needs to handle different data types
+
+5. Form Handling : When creating form utilities that need to work with different input types
