@@ -10,6 +10,7 @@ h1 {
   font-family: "Luckiest Guy", cursive;
   letter-spacing: 2px;
   text-shadow: 2px 5px 5px rgb(227 47 47 / 40%);
+  margin: 20px auto;
 }
 
 .customH1Tag {

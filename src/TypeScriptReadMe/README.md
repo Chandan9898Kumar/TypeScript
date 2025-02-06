@@ -779,3 +779,151 @@ numbers.add(2);
 4. State Management : When managing state that needs to handle different data types
 
 5. Form Handling : When creating form utilities that need to work with different input types
+
+### Examples of generic Index Signature in TypeScript
+
+An index signature in TypeScript allows you to define the type of keys and values for an object. This is useful when you don't know all the property names in advance but you know the shape of the values.
+
+**Syntax**
+
+```ts
+interface MyObject {
+  [key: string]: number;
+}
+
+In this example:
+
+> [key: string] indicates that the keys of the object are strings.
+> number indicates that the values associated with those keys are numbers.
+```
+
+1. Basic Generic Index Type:
+
+```ts
+interface GenericDictionary<T> {
+  [key: string]: T;
+}
+
+// Usage
+const numberDictionary: GenericDictionary<number> = {
+  age: 25,
+  score: 100,
+};
+
+const stringDictionary: GenericDictionary<string> = {
+  name: "John",
+  city: "New York",
+};
+```
+
+2. Multiple Type Parameters:
+
+```ts
+interface KeyValuePair<K extends string | number, V> {
+  [key: K]: V;
+}
+
+// Usage
+const stringKeyObject: KeyValuePair<string, number> = {
+  age: 25,
+  score: 100,
+};
+
+const numberKeyObject: KeyValuePair<number, string> = {
+  1: "First",
+  2: "Second",
+};
+```
+
+3. Generic Interface with Constraints:
+
+```ts
+interface Entity {
+  id: number;
+  name: string;
+}
+
+interface EntityMap<T extends Entity> {
+  [key: string]: T;
+}
+
+// Usage
+interface User extends Entity {
+  email: string;
+}
+
+const userMap: EntityMap<User> = {
+  user1: { id: 1, name: "John", email: "john@example.com" },
+  user2: { id: 2, name: "Jane", email: "jane@example.com" },
+};
+```
+
+4. Nested Generic Types:
+
+```ts
+interface Collection<T> {
+  [key: string]: {
+    data: T;
+    timestamp: Date;
+  };
+}
+
+// Usage
+interface Product {
+  name: string;
+  price: number;
+}
+
+const productCollection: Collection<Product> = {
+  item1: {
+    data: { name: "Laptop", price: 999 },
+    timestamp: new Date(),
+  },
+  item2: {
+    data: { name: "Phone", price: 699 },
+    timestamp: new Date(),
+  },
+};
+```
+
+5. Generic Interface with Multiple Index Types:
+
+```ts
+interface MultiIndex<T> {
+  [key: string]: T;
+  [key: number]: T;
+}
+
+// Usage
+const mixed: MultiIndex<string> = {
+  name: "John",
+  1: "One",
+  age: "25",
+  2: "Two",
+};
+```
+
+6. Generic Interface with Specific Keys:
+
+```ts
+type AllowedKeys = "first" | "second" | "third";
+
+interface ConstrainedMap<T> {
+  [K in AllowedKeys]: T;
+}
+
+// Usage
+const constrainedObject: ConstrainedMap<number> = {
+  first: 1,
+  second: 2,
+  third: 3,
+  // fourth: 4 // Error: Object literal may only specify known properties
+};
+```
+
+`These generic interfaces are useful when:`
+
+1. You need to create reusable type definitions
+2. The type of values might change but the structure remains the same
+3. You want to ensure type safety while maintaining flexibility
+4. You're working with dynamic keys but want to enforce value types

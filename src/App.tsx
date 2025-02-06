@@ -3,6 +3,7 @@ import "./App.css";
 import Loader from "./Components/Loader/Loader";
 const Carousel = lazy(() => import("./Pages/Carousel/Carousel"));
 const Header = lazy(() => import("./Components/Header/Header"));
+const TrafficLight = lazy(()=>import('./Pages/TrafficLight/TrafficLight'))
 const App: React.FC = () => {
   console.log(process.env.NODE_ENV);
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
       </header>
         {" "}
         <Carousel />
+        <TrafficLight />
       </Suspense>
     </>
   );
