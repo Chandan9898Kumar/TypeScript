@@ -49,16 +49,19 @@
 
 2. If you want to use Volume in the container the use :
 
-`docker run -it --rm -p 3000:3000 -v "$(pwd):/app" -v "/app/node_modules" --name typescript-app typescript`
+A. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "/app/node_modules" --name typescript-app typescript`
 
+B. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "container-volume:/app/node_modules" --name typescript-app typescript`
 
 **This approach uses two volume mounts:**
 
-1. The first mount `-v "$(pwd):/app"` syncs your local directory with the container
+1. The first mount `-v "${pwd}:/app"` syncs your local directory with the container.Here volume in your command ( $(pwd):/app) is actually a bind mount, not a volume, so it doesn't need a volume name as it's directly mapping your current directory to the container.
 
-2. The second mount `-v "/app/node_modules"` creates an anonymous volume for the node_modules directory, preventing it from being overwritten by the host's files
+2. A. The second mount `-v "/app/node_modules"` creates an anonymous volume for the node_modules directory, preventing it from being overwritten by the host's files
 
-3. `$(pwd)` is the current working directory on your host machine
+2. B. -v `"container-volume:/app/node_modules"` here `container-volume` is the name of the volume separated by `:`
+
+3. `${pwd}` is the current working directory on your host machine
 
 4. `/app` is the directory inside the container (matching your WORKDIR)
 
