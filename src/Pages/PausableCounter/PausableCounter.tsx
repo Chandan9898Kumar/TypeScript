@@ -1,7 +1,50 @@
-import { FC, useState, useEffect } from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { FC, useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
 import styles from "./pause.module.css";
-import { motion, AnimatePresence } from 'framer-motion';
+
+interface ButtonVariants {
+  [key: string]: {
+    scale: number;
+    opacity?: number;
+    boxShadow?: string;
+    transition?: {
+      duration: number;
+      ease?: string;
+    };
+  };
+}
+
+// Button animation variants
+const buttonVariants: ButtonVariants = {
+  initial: {
+    scale: 1,
+    opacity: 1
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)",
+    transition: {
+      duration: 0.2,
+      ease: "easeInOut"
+    }
+  },
+  tap: {
+    scale: 0.95,
+    boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
+    transition: {
+      duration: 0.1
+    }
+  },
+  disabled: {
+    scale: 1,
+    opacity: 0.6,
+    boxShadow: "none",
+    transition: {
+      duration: 0.2
+    }
+  }
+};
 const PausableCounter: FC = () => {
   const [count, setCount] = useState<number>(0);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
@@ -51,37 +94,6 @@ const PausableCounter: FC = () => {
     }
   };
 
-  // Button animation variants
-  const buttonVariants = {
-    initial: {
-      scale: 1,
-      opacity: 1
-    },
-    hover: {
-      scale: 1.05,
-      boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)",
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut"
-      }
-    },
-    tap: {
-      scale: 0.95,
-      boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
-      transition: {
-        duration: 0.1
-      }
-    },
-    disabled: {
-      scale: 1,
-      opacity: 0.6,
-      boxShadow: "none",
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
-
   return (
     <section>
       <Header title="Pausable Counter" className="customH1Tag" />
@@ -126,12 +138,48 @@ const PausableCounter: FC = () => {
         <AnimatePresence mode="wait">
           <motion.span
             key={count}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: 20, scale: 0.9 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              color: count > 0 ? "#2563eb" : "#374151", // Blue for positive numbers
+              textShadow: count > 10 ? "0 0 8px rgba(73, 160, 231, 0.3)" : "none" // Glow effect for numbers > 10
+            }}
+            exit={{ opacity: 0, x: -20, scale: 0.9 }}
             className={styles.text}
+            transition={{
+              duration: 0.4,
+              ease: "easeOut"
+            }}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.2 }
+            }}
           >
-            Count: {count}
+            <motion.span
+              initial={{ opacity: 0.7 }}
+              animate={{ opacity: 1 }}
+              style={{ color: "#6B7280" }} // Gray color for the "Count:" text
+            >
+              Count{" "}:{" "}
+            </motion.span>
+            <motion.span
+              animate={{
+                color: count < 0 ? "#DC2626" : // Red for negative
+                  count > 20 ? "#059669" : // Green for > 20
+                    "#2563eb", // Default blue
+                scale: [1, 1.1, 1], // Subtle pop effect on change
+              }}
+              transition={{
+                scale: {
+                  duration: 0.2,
+                  ease: "easeInOut"
+                }
+              }}
+            >
+              {count}
+            </motion.span>
           </motion.span>
         </AnimatePresence>
       </div>
