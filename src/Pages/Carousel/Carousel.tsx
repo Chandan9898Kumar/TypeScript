@@ -61,10 +61,10 @@ const Carousel: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <section>
       <Header title="Carousel" className="customH1Tag" />
       <Images imageData={data} />
-    </>
+    </section>
   );
 };
 

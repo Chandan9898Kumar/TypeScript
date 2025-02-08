@@ -58,7 +58,7 @@ const TrafficLight: FC = () => {
   );
 
   return (
-    <>
+    <section>
       <Header title="Traffic Signal " className="customH1Tag" />
       <div className={signalStyle.main}>
         <div className={signalStyle.signal}>
@@ -76,7 +76,7 @@ const TrafficLight: FC = () => {
           ></div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

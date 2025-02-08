@@ -8,3 +8,8 @@
   --head-color: plum;
   --text-transform: uppercase;
 }
+
+
+section{
+  margin: 5rem auto;
+}
