@@ -1,0 +1,20 @@
+.container {
+  list-style-type: none;
+  border: 1px solid gainsboro;
+  text-align: start;
+  padding: 35px 35px;
+}
+
+.lists {
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: 2px solid darkgrey;
+  padding: 10px 10px;
+  margin: 2px auto;
+  cursor: pointer;
+}
+
+.description {
+  padding: 10px 20px;
+  color: cadetblue;
+}
