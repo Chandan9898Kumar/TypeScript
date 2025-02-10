@@ -114,10 +114,16 @@ This type definition would be used when handling mouse events (like click, hover
             key={item.id}
             className={style.lists}
             data-items={JSON.stringify(item)}
-            role="listitem"
+            role="list"
           >
-            {item.isOpen ? <SvgIcons.DownArrow /> : <SvgIcons.RightArrow />}{" "}
-            {item.title}
+            <span className={style.accordionHeader}>
+              {item.isOpen ? (
+                <SvgIcons.DownArrow aria-hidden="true" />
+              ) : (
+                <SvgIcons.RightArrow aria-hidden="true" />
+              )}{"  "}
+              <span id={`title-${item.id}`}>{item.title}</span>
+            </span>
             {item.isOpen && (
               <div role="region" className={style.description}>
                 {item.description}
