@@ -12,6 +12,10 @@
   padding: 10px 10px;
   margin: 2px auto;
   cursor: pointer;
+  transition: all 0.8s;
+  &:hover {
+    background: gainsboro;
+  }
 }
 
 .description {

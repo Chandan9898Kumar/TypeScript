@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import SvgIcons from "../../assets/Svg";
 import Header from "../../Components/Header/Header";
 import style from "./accord.module.css";
+
 interface accordionData {
   id: number;
   title: string;
@@ -72,9 +73,19 @@ interface AccordProps {
 const Accordion: FC<AccordProps> = ({ data }) => {
   const [result, setResult] = useState(data);
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLUListElement, MouseEvent>
-  ): void => {
+  /**
+ * React.MouseEvent: This is a React-specific event type that extends the standard DOM MouseEvent. It provides type safety and additional React-specific properties for mouse interactions.
+
+<HTMLUListElement, MouseEvent>: These are generic type parameters:
+
+HTMLUListElement: Specifies that the event is occurring on an unordered list ( <ul>) element
+
+MouseEvent: Indicates the underlying DOM event type.
+
+This type definition would be used when handling mouse events (like click, hover, etc.) on a <ul> element in React.
+ */
+
+  const handleClick = (event: React.MouseEvent<HTMLUListElement, MouseEvent>): void => {
     const target = event.target as HTMLElement;
     const itemData = JSON.parse(target.dataset.items || "{}") as accordionData;
 
@@ -91,7 +102,12 @@ const Accordion: FC<AccordProps> = ({ data }) => {
   };
 
   return (
-    <ul className={style.container} onClick={handleClick} role="button" aria-label="Movie descriptions accordion">
+    <ul
+      className={style.container}
+      onClick={handleClick}
+      role="button"
+      aria-label="Movie descriptions accordion"
+    >
       {result?.map((item) => {
         return (
           <li
@@ -103,7 +119,9 @@ const Accordion: FC<AccordProps> = ({ data }) => {
             {item.isOpen ? <SvgIcons.DownArrow /> : <SvgIcons.RightArrow />}{" "}
             {item.title}
             {item.isOpen && (
-              <div role="region" className={style.description}>{item.description}</div>
+              <div role="region" className={style.description}>
+                {item.description}
+              </div>
             )}
           </li>
         );
