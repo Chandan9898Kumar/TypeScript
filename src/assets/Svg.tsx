@@ -34,10 +34,10 @@ const DownArrow = () => {
   );
 };
 
-
-const Star = ({filler}:{filler:string}) => {
+const Star = ({ filler, ...rest }: { filler: string }) => {
   return (
     <svg
+      {...rest}
       xmlns="http://www.w3.org/2000/svg"
       width="35"
       height="45"

@@ -7,7 +7,7 @@ const Header = lazy(() => import("./Components/Header/Header"));
 const TrafficLight = lazy(() => import('./Pages/TrafficLight/TrafficLight'))
 const PausableCounter = lazy(() => import('./Pages/PausableCounter/PausableCounter'))
 const AccordionContainer = lazy(()=>import('./Pages/Accordion/Accordion'))
-const StartRating = lazy(()=>import('./Pages/StartRating/StartRating'))
+const StartRating = lazy(()=>import('./Pages/StartRating/StarRating'))
 const App: React.FC = () => {
   console.log(process.env.NODE_ENV);
   return (
