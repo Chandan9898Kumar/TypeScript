@@ -2,6 +2,7 @@ import { FC, useState, useCallback, memo } from "react";
 import Header from "../../Components/Header/Header";
 import SvgIcons from "../../assets/Svg";
 import style from "./star.module.css";
+import { motion } from "framer-motion";
 const StartRating: FC = () => {
   const [hoverStars, setHoverStars] = useState<number>(0);
   const [selectedStars, setSelectedStars] = useState<number>(0);
@@ -71,21 +72,41 @@ const RatedStars: FC<StarProps> = ({
   const FILLER_NORMAL = "cornflowerblue";
 
   return (
-    <div
+    <motion.div
       className={style.stars}
       onMouseEnter={() => hoverIn(stars)}
       onMouseLeave={hoverOut}
       onClick={() => selectedStars(stars)}
       role="button"
       aria-pressed={isMatched}
+      whileHover={{ scale: 1.2 }}
+      whileTap={{ scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        rotate: isMatched ? [0, 15, -15, 0] : 0,
+      }}
+      transition={{
+        duration: 0.2,
+        rotate: {
+          duration: 0.3,
+          ease: "easeInOut",
+        },
+      }}
     >
-      {
+      <motion.div
+        animate={{
+          scale: isMatched ? 1.1 : 1,
+        }}
+        transition={{ duration: 0.2 }}
+      >
         <SvgIcons.Star
           filler={isMatched ? FILLER_Hover : FILLER_NORMAL}
           aria-hidden="true"
         />
-      }
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
