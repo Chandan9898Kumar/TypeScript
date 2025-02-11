@@ -7,6 +7,7 @@ const Header = lazy(() => import("./Components/Header/Header"));
 const TrafficLight = lazy(() => import('./Pages/TrafficLight/TrafficLight'))
 const PausableCounter = lazy(() => import('./Pages/PausableCounter/PausableCounter'))
 const AccordionContainer = lazy(()=>import('./Pages/Accordion/Accordion'))
+const StartRating = lazy(()=>import('./Pages/StartRating/StartRating'))
 const App: React.FC = () => {
   console.log(process.env.NODE_ENV);
   return (
@@ -28,6 +29,7 @@ const App: React.FC = () => {
         <TrafficLight />
         <PausableCounter />
         <AccordionContainer />
+        <StartRating />
       </Suspense>
     </>
   );
