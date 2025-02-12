@@ -43,3 +43,8 @@ img {
   font-weight: 500;
   padding: 10px 10px;
 }
+
+.customTag {
+  margin: 0px;
+  /* padding: 10px 10px; */
+}

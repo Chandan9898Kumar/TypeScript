@@ -1,0 +1,19 @@
+.container{
+    width: 60px;
+    background: antiquewhite;
+    height: 25px;
+    border: none;
+    border-radius: 20px;
+}
+
+.toggle{
+    background: cadetblue;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: inherit;
+    box-sizing: border-box;
+    cursor: pointer;
+    right: 20px;
+    transition: all 0.8s linear ;
+}
