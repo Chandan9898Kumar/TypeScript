@@ -1,6 +1,6 @@
 .container {
   width: 60px;
-  background: #e0e0e0; /* Default background for off state */
+  background-color: #f4f4f5; /* Default background for off state */
   height: 25px;
   border: none;
   border-radius: 20px;
@@ -9,11 +9,11 @@
 }
 
 .container[data-toggled="true"] {
-  background: #2196f3;
+  background: #303136;
 }
 
 .toggle {
-  background: white;
+  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
   border: none;
   border-radius: 50%;
   width: 25px;
@@ -28,6 +28,9 @@
 /* Move toggle button to right when active */
 .container[data-toggled="true"] .toggle {
   transform: translateX(35px);
+  background: #303136;
+  /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }
 
 /* Optional hover effects */
