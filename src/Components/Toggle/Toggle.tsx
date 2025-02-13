@@ -1,17 +1,19 @@
 import { useState, FC } from "react";
 import styles from "./toggle.module.css";
-
+import { ContextManager } from "../../Context/ThemeManager";
 const Toggle: FC = () => {
   const [isToggled, setIsToggled] = useState<boolean>(false);
 
+  const { isThemeDark, setIsThemeDark } = ContextManager();
+
   const handleToggle = (): void => {
     setIsToggled(!isToggled);
+    setIsThemeDark(!isThemeDark);
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container}  data-toggled={isToggled}>
       <div
-        style={{ position: isToggled ? "absolute" : undefined }}
         className={styles.toggle}
         onClick={handleToggle}
         role="button"

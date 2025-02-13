@@ -9,7 +9,40 @@
   --text-transform: uppercase;
 }
 
+[data-theme="light"] {
+  color-scheme: light;
+  --text-color: #333333;
+  --background-color: #ffffff;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --border-color: #dee2e6;
+  --hover-color: #f8f9fa;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --link-color: #0056b3;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+}
 
-section{
+[data-theme="dark"] {
+  color-scheme: dark;
+  --text-color: #e1e1e1;
+  --background-color: #121212;
+  --primary-color: #0d6efd;
+  --secondary-color: #495057;
+  --border-color: #2d2d2d;
+  --hover-color: #1f1f1f;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --link-color: #8ab4f8;
+  --error-color: #ff453a;
+  --success-color: #34c759;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: background-color 0.8s linear;
+}
+
+section {
   margin: 5rem auto;
 }
