@@ -1,43 +1,64 @@
 .container {
-  width: 60px;
-  background-color: #f4f4f5; /* Default background for off state */
-  height: 25px;
-  border: none;
-  border-radius: 20px;
-  position: relative;
-  transition: background-color 0.3s ease;
+    width: 60px;
+    background-color: #f4f4f5;
+    /* Default background for off state */
+    height: 25px;
+    border: none;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .container[data-toggled="true"] {
-  background: #303136;
+    background: #303136;
 }
 
 .toggle {
-  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
-  border: none;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  left: 0;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  cursor: pointer;
+    background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
+    cursor: pointer;
 }
 
 /* Move toggle button to right when active */
 .container[data-toggled="true"] .toggle {
-  transform: translateX(35px);
-  background: #303136;
-  /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
-  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+    transform: translateX(35px);
+    background: #303136;
+    /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+    box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
 }
 
 /* Optional hover effects */
 .container:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 
 .toggle:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
+
+/*
+The inset property in CSS is a convenient shorthand property that combines four positioning properties: top, right, bottom, and left into a single declaration. It's particularly useful when working with positioned elements (elements with position: relative, absolute, or fixed).
+
+
+> Example :
+
+
+.element {
+    Creates an inner shadow effect 
+    box-shadow: inset -3px -2px 5px -2px #8983f7;
+  }
+  
+   Creates an outer shadow (without inset) 
+  .element {
+    box-shadow: -3px -2px 5px -2px #8983f7;
+  }
+  
+*/
