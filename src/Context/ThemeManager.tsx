@@ -36,7 +36,7 @@ export const ContextManager = () => {
   }
   return context;
 };
-console.log(ThemeContext, "ThemeContext");
+
 
 const ThemeManager = ({ children }: ReactChild) => {
   const [isThemeDark, setIsThemeDark] = useState<boolean>(false);

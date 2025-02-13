@@ -9,6 +9,38 @@
   --text-transform: uppercase;
 }
 
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c5c5c5 #f1f1f1;
+}
+
+
 [data-theme="light"] {
   color-scheme: light;
   --text-color: #333333;
