@@ -46,8 +46,7 @@
 
 > NOTE : That you can't use both interactive terminal ( -it) and detached mode ( -d) effectively at the same time since they serve opposite purposes - one is for interaction and the other is for background running. Choose the one that better suits your needs:
 
-
-2. If you want to use Volume in the container the use :
+2. **If you want to use Volume in the container the use** :
 
 A. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "/app/node_modules" --name typescript-app typescript`
 
@@ -59,14 +58,13 @@ B. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "container-volume:/app/
 
 2. A. The second mount `-v "/app/node_modules"` creates an anonymous volume for the node_modules directory, preventing it from being overwritten by the host's files
 
-2. B. -v `"container-volume:/app/node_modules"` here `container-volume` is the name of the volume separated by `:`
+3. B. -v `"container-volume:/app/node_modules"` here `container-volume` is the name of the volume separated by `:`
 
-3. `${pwd}` is the current working directory on your host machine
+4. `${pwd}` is the current working directory on your host machine
 
-4. `/app` is the directory inside the container (matching your WORKDIR)
+5. `/app` is the directory inside the container (matching your WORKDIR)
 
-5. The colon `:` separates the host path from the container path.
-
+6. The colon `:` separates the host path from the container path.
 
 `This will sync your local directory with the container's /app directory, allowing you to:`
 
@@ -81,23 +79,27 @@ B. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "container-volume:/app/
 2. The `--rm` flag automatically removes the container and its file system when the container exits. Here's what it does specifically:
 
 A. `When the container stops running (either naturally or by force), Docker will:`
+
 1. Delete the container
 2. Clean up any associated file systems
 3. Free up disk space used by the container
 
 B. `This flag is particularly useful when:`
+
 1. Running temporary containers for development or testing
 2. You don't need to keep container history
 3. You want to avoid accumulating stopped containers on your system
 4. You're running short-lived containers that you won't need to restart
 
 C. `Without --rm:`
+
 1. Stopped containers remain in your system
 2. You'd need to manually remove them using docker rm <container-id>
 3. They continue to take up disk space
 4. You can see them when running docker ps -a
 
 D. `With --rm:`
+
 1. Container is automatically cleaned up after exit
 2. Saves disk space
 3. Reduces clutter in your Docker environment
@@ -105,30 +107,43 @@ D. `With --rm:`
 
 E. `Important note: The --rm flag only removes the container and its filesystem.`
 `It does not:`
+
 1. Remove the Docker image
 2. Delete any named volumes you've created. ( if the volume has no name then it will be removed)
 3. Affect your source code or mounted volumes
 
 ### Commands For Volumes :
+
 # 1. List all volumes
+
 docker volume ls
 
-# 2.  Remove a specific named volume
+# 2. Remove a specific named volume
+
 docker volume rm give_volume_name_here
 
-# 3.  Remove all unused volumes
+# 3. Remove all unused volumes
+
 docker volume prune
 
+# 4. Create a named volume
+
+docker volume create my-volume
+
+> NOTE : We can share the volume with multiple containers.
+
+> Think of a Docker volume as a shared folder that multiple containers can access - similar to how multiple programs on your computer can access the same folder.
 
 # Networking In Docker :
 
 1. **Docker provides several networking modes to handle container communication**
 
 1. `Bridge Networking (Default)`
-Bridge networking is the default network driver in Docker. When you create a container, it is automatically connected to a bridge network unless you specify otherwise. This network allows containers to communicate with each other through a virtual bridge that Docker creates on the host machine.
-`Command :` docker network inspect bridge
+   Bridge networking is the default network driver in Docker. When you create a container, it is automatically connected to a bridge network unless you specify otherwise. This network allows containers to communicate with each other through a virtual bridge that Docker creates on the host machine.
+   `Command :` docker network inspect bridge
 
 `Key characteristics:`
+
 1. Default network driver in Docker
 2. Creates a virtual network bridge on the host machine
 3. Containers can communicate with each other using container names as hostnames
@@ -138,7 +153,7 @@ Bridge networking is the default network driver in Docker. When you create a con
 > Containers on the same bridge network can communicate with each other using their container names as hostnames.
 
 2. `Host Networking`
-Host networking removes the network isolation between the Docker container and the Docker host. When you use host networking, the container shares the host's network stack and can directly access the host's network interfaces.
+   Host networking removes the network isolation between the Docker container and the Docker host. When you use host networking, the container shares the host's network stack and can directly access the host's network interfaces.
 
 In this mode, the container will use the host's IP address and ports.
 
@@ -156,8 +171,6 @@ In this mode, the container will use the host's IP address and ports.
 8. Gives containers the same networking properties as EC2 instances
 9. Recommended for AWS ECS tasks unless there's a specific need for other modes
 
-
-
 **Best Practices:**
 
 1. Use b`ridge networking` when you need isolation between containers and host
@@ -166,3 +179,31 @@ In this mode, the container will use the host's IP address and ports.
    A. You need maximum network performance
    B. You need to bind to specific host network interfaces
    C. Port mapping isn't required (-p 3000:3000 )
+
+### Network Commands:
+
+# View network details
+
+docker network inspect bridge
+
+# List all networks
+
+docker network ls
+
+# Create a custom network
+
+docker network create my-network
+
+# Connect a container to a network
+
+docker network connect my-network container-name
+
+**For container-to-container communication in bridge mode, you can use:**
+
+# Run first container
+
+docker run --name container1 my-image
+
+# Run second container and link to first
+
+docker run --name container2 --link container1 my-image
