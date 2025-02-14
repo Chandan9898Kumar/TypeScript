@@ -122,15 +122,47 @@ docker volume prune
 
 # Networking In Docker :
 
-1. Bridge Networking
+1. **Docker provides several networking modes to handle container communication**
+
+1. `Bridge Networking (Default)`
 Bridge networking is the default network driver in Docker. When you create a container, it is automatically connected to a bridge network unless you specify otherwise. This network allows containers to communicate with each other through a virtual bridge that Docker creates on the host machine.
 `Command :` docker network inspect bridge
 
+`Key characteristics:`
+1. Default network driver in Docker
+2. Creates a virtual network bridge on the host machine
+3. Containers can communicate with each other using container names as hostnames
+4. Requires port mapping (-p flag) to access container services from host
+5. Suitable for standalone containers on a single host
+
 > Containers on the same bridge network can communicate with each other using their container names as hostnames.
 
-2. Host Networking
+2. `Host Networking`
 Host networking removes the network isolation between the Docker container and the Docker host. When you use host networking, the container shares the host's network stack and can directly access the host's network interfaces.
 
 In this mode, the container will use the host's IP address and ports.
 
 > Note : In Host Networking, while running the container we don't need to set port like : -p 3000:3000 ( Because our host machine and docker container are on the same network )
+
+`Key characteristics:`
+
+1. Removes network isolation between container and host
+2. Container shares host's network stack directly
+3. No need for port mapping as container uses host's network interface
+4. Better performance but less network security isolation
+5. Limited to one container per port on the host
+6. AWSVPC Mode (Specific to Amazon ECS)
+7. Provides each task with its own elastic network interface (ENI)
+8. Gives containers the same networking properties as EC2 instances
+9. Recommended for AWS ECS tasks unless there's a specific need for other modes
+
+
+
+**Best Practices:**
+
+1. Use b`ridge networking` when you need isolation between containers and host
+
+2. Use `host networking` when:
+   A. You need maximum network performance
+   B. You need to bind to specific host network interfaces
+   C. Port mapping isn't required (-p 3000:3000 )
