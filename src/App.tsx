@@ -9,6 +9,7 @@ const PausableCounter = lazy(() => import("./Pages/PausableCounter/PausableCount
 const AccordionContainer = lazy(() => import("./Pages/Accordion/Accordion"));
 const StartRating = lazy(() => import("./Pages/StartRating/StarRating"));
 const Toggle = lazy(() => import("./Components/Toggle/Toggle"));
+const MessageComponent = lazy(() => import("./Pages/Message/Message"));
 const App: React.FC = () => {
   console.log(process.env.NODE_ENV);
   return (
@@ -38,6 +39,7 @@ const App: React.FC = () => {
         <PausableCounter />
         <AccordionContainer />
         <StartRating />
+        <MessageComponent />
       </Suspense>
     </>
   );
