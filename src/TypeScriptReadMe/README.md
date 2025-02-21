@@ -927,3 +927,95 @@ const constrainedObject: ConstrainedMap<number> = {
 2. The type of values might change but the structure remains the same
 3. You want to ensure type safety while maintaining flexibility
 4. You're working with dynamic keys but want to enforce value types
+
+### Mapped types in TypeScript.
+
+Mapped types in TypeScript are a powerful feature that allows you to create new types by transforming existing ones. They enable you to create types based on the properties of another type, applying modifications to each property. This is particularly useful for scenarios where you want to create variations of a type without having to redefine all its properties manually.
+
+`Basic Syntax`
+
+The basic syntax for a mapped type looks like this:
+
+```bash
+
+type MappedType<T> = {
+    [K in keyof T]: Type; // Type can be a transformation of T[K]
+};
+
+
+
+  1. T is the original type.
+  2. K iterates over each key in T (using keyof T).
+  3. Type can be a transformation of the original property type T[K].
+
+```
+
+**Common Use Cases**
+
+1. Making All Properties Optional: You can create a type where all properties of an existing type are optional.
+
+```bash
+type User = {
+    id: number;
+    name: string;
+    email: string;
+};
+
+type PartialUser  = {
+    [K in keyof User]?: User[K]; // Making all properties optional
+};
+
+const user: PartialUser  = {
+    name: "Alice" // id and email are optional
+};
+
+```
+
+2. Making All Properties Readonly: You can create a type where all properties of an existing type are read-only.
+
+```bash
+type ReadonlyUser  = {
+    readonly [K in keyof User]: User[K]; // Making all properties readonly
+};
+
+const user: ReadonlyUser  = {
+    id: 1,
+    name: "Alice",
+    email: "alice@example.com"
+};
+
+// user.name = "Bob"; // Error: Cannot assign to 'name' because it is a read-only property.
+```
+
+3. Transforming Property Types: You can change the type of each property in a type.
+
+```bash
+type UserWithStringId = {
+    [K in keyof User]: string; // Changing all properties to string
+};
+
+const user: UserWithStringId = {
+    id: "1", // Now id is a string
+    name: "Alice",
+    email: "alice@example.com"
+};
+```
+
+4. Filtering Properties: You can create a mapped type that only includes certain properties based on a condition.
+
+```bash
+type UserWithStringKeys = {
+    [K in keyof User as K extends 'name' | 'email' ? K : never]: User[K];
+};
+
+const user: UserWithStringKeys = {
+    name: "Alice",
+    email: "alice@example.com"
+};
+```
+
+# When to Use Mapped Types
+
+> Code Reusability: When you want to create variations of existing types without repeating code.
+> Type Transformations: When you need to apply transformations to types, such as making properties optional or readonly.
+> Dynamic Type Creation: When you want to create types based on the structure of other types dynamically.
