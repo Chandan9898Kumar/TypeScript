@@ -1045,6 +1045,6 @@ This diagram illustrates the type system in TypeScript.
 
 4. ### TypeScript Classes Visualization
 
-![TypeScript Classes](https://www.typescriptlang.org/static/TypeScript%20Classes-83cc6f8e2ba2002d5e2c04221fa78f9.png)
+![TypeScript Classes](https://www.typescriptlang.org/static/TypeScript%20Classes-83cc6f8e42ba2002d5e2c04221fa78f9.png)
 
 This diagram illustrates how classes work in TypeScript.
