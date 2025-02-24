@@ -1019,3 +1019,32 @@ const user: UserWithStringKeys = {
 > Code Reusability: When you want to create variations of existing types without repeating code.
 > Type Transformations: When you need to apply transformations to types, such as making properties optional or readonly.
 > Dynamic Type Creation: When you want to create types based on the structure of other types dynamically.
+
+
+1. ### TypeScript Flow Visualization
+
+![TypeScript Control Flow Analysis](https://www.typescriptlang.org/static/TypeScript%20Control%20Flow%20Analysis-8a549253ad8470850b77c4c5c351d457.png)
+
+This diagram illustrates TypeScript's control flow analysis.
+
+
+2. ### TypeScript Interfaces Visualization
+
+![TypeScript Interfaces](https://www.typescriptlang.org/static/TypeScript%20Interfaces-34f1ad12132fb463bd1dfe5b85c5b2e6.png)
+
+This diagram illustrates how interfaces work in TypeScript.
+
+
+
+3. ### TypeScript Types Visualization
+
+![TypeScript Types](https://www.typescriptlang.org/static/TypeScript%20Types-ae199d69aeecf7d4a2704a528d0fd3f9.png)
+
+This diagram illustrates the type system in TypeScript.
+
+
+4. ### TypeScript Classes Visualization
+
+![TypeScript Classes](https://www.typescriptlang.org/static/TypeScript%20Classes-83cc6f8e2ba2002d5e2c04221fa78f9.png)
+
+This diagram illustrates how classes work in TypeScript.
