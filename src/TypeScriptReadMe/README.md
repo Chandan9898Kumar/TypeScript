@@ -1048,3 +1048,9 @@ This diagram illustrates the type system in TypeScript.
 ![TypeScript Classes](https://www.typescriptlang.org/static/TypeScript%20Classes-83cc6f8e42ba2002d5e2c04221fa78f9.png)
 
 This diagram illustrates how classes work in TypeScript.
+
+5. ### Cheat Sheet
+
+
+![Cheat Sheet](https://rmolinamir.github.io/typescript-cheatsheet/#type-assertions)
+
