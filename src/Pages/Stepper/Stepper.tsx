@@ -8,13 +8,7 @@ import {
   Component5,
 } from "./Components";
 
-const Components = [
-  Component1,
-  Component2,
-  Component3,
-  Component4,
-  Component5,
-]
+const Components = [Component1, Component2, Component3, Component4, Component5];
 
 const steps = [
   "first Step",
@@ -38,25 +32,26 @@ const Stepper = () => {
 
   return (
     <section className={styles.container}>
-      <ul>
-        {steps.map((step, index) => {
+      <div className={styles.stepper}>
+        {steps.map((item, index) => {
           return (
-            <li key={index}>
-              <p
-                className={styles.itemIndex}
-                data-step={index <= activeStepper}
-              >
-                {index + 1}
-              </p>
-              <p className={styles.itemText}>{step}</p>
-            </li>
+            <div className={styles.main} key={item}>
+              <div data-item={index <= activeStepper} className={styles.ids}>
+                <span>{index + 1}</span>
+              </div>
+              <div className={styles.item}>{item}</div>
+            </div>
           );
         })}
-      </ul>
-
-      <div className={styles.products}>
-        {Components[activeStepper]()}
+        <div className={styles.bar}>
+          <div
+            className={styles.progress}
+            style={{ width: `${(activeStepper / (steps.length - 1)) * 100}%` }}
+          ></div>
+        </div>
       </div>
+
+      <div className={styles.products}>{Components[activeStepper]()}</div>
 
       <div className={styles.btns}>
         <button

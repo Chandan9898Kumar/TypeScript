@@ -52,11 +52,19 @@ A. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "/app/node_modules" --n
 
 B. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "container-volume:/app/node_modules" --name typescript-app typescript`
 
+C. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app:ro" -v "container-volume:/app/node_modules" --name typescript-app typescript`
+
 **This approach uses two volume mounts:**
 
 1. The first mount `-v "${pwd}:/app"` syncs your local directory with the container.Here volume in your command ( $(pwd):/app) is actually a bind mount, not a volume, so it doesn't need a volume name as it's directly mapping your current directory to the container.
+   a. Mounts your current directory  ${pwd} to /app in the container .
+   b. Any changes in your local src folder will be reflected in the container .
+   c.Changes made inside the container will appear in your local directory .
 
-2. A. The second mount `-v "/app/node_modules"` creates an anonymous volume for the node_modules directory, preventing it from being overwritten by the host's files
+
+2. A. The second mount `-v "/app/node_modules"` creates an anonymous volume for the node_modules directory, preventing it from being overwritten by the host's files.
+   a. Creates a separate volume for node_modules .
+   b. Prevents local node_modules from overwriting container's modules
 
 3. B. -v `"container-volume:/app/node_modules"` here `container-volume` is the name of the volume separated by `:`
 
@@ -71,6 +79,11 @@ B. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "container-volume:/app/
 1. Your `local changes will be reflected in the container ( Make changes to your code locally and see them reflected in the container )`
 2. The node_modules directory inside the container remains isolated and intact
 3. You avoid conflicts between host and container dependencies
+
+**This is Read-Only Bind Mount**
+C. ` "${pwd}:/app:ro" ` :
+a.  Mounts the directory as read-only.
+b. Prevents container from modifying host files.(if you do any changes inside the container by going inside the container , then those changes will not be reflected in your local directory. But any changes inside the your local directory happens then it will also gets reflected in the container .)
 
 # NOTE
 

@@ -2,30 +2,61 @@
   box-sizing: border-box;
 }
 
-.container ul {
-  list-style-type: none;
+.stepper {
+  margin: 2rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  position: relative;
 }
 
-.itemIndex {
-  background: aliceblue;
-  text-align: center;
-  height: 35px;
-  width: 35px;
+.bar {
+  background: beige;
+  height: 20px;
+  width: 100%;
+  border-radius: 5px;
+  position: absolute;
+  top: 5px;
+}
+
+.progress {
+  width: 0%;
+  height: inherit;
+  background: cornflowerblue;
+  transition: width 0.8s linear;
+  border-radius: inherit;
+  position: absolute;
+}
+
+.ids {
+  z-index: 999;
+  background-color: darkkhaki;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  font-size: 1.25rem;
-  font-weight: 500;
+  text-align: center;
   align-content: center;
+  transition: background 0.8s linear;
 }
 
-.itemText {
-  text-transform: capitalize;
-  color: burlywood;
-  font-size: 1.25rem;
-  font-weight: 500;
+[data-item="true"] {
+  background: palevioletred;
+}
+
+
+.main {
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  gap: 10px;
+}
+
+.item {
+  margin: 20px auto;
 }
 
 .btns {
@@ -48,10 +79,6 @@
   }
 }
 
-.container [data-step="true"] {
-  background: gainsboro;
-  color: aliceblue;
-}
 
 .products {
   display: flex;
