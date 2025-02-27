@@ -46,7 +46,13 @@ const Stepper = () => {
         <div className={styles.bar}>
           <div
             className={styles.progress}
-            style={{ width: `${(activeStepper / (steps.length - 1)) * 100}%` }}
+            style={{
+              transform: `scaleX(${activeStepper / (steps.length - 1)})`,
+              transition: "transform 0.3s ease-out",
+              transformOrigin: "left", // Important for horizontal scaling
+              display: "block",
+              width: "100%", // Make sure there's a base width to scale from
+            }}
           ></div>
         </div>
       </div>
