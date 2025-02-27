@@ -12,7 +12,6 @@ const Toggle = lazy(() => import("./Components/Toggle/Toggle"));
 const MessageComponent = lazy(() => import("./Pages/Message/Message"));
 const Stepper = lazy(() => import("./Pages/Stepper/Stepper"));
 const App: React.FC = () => {
-  console.log(process.env.NODE_ENV);
   return (
     <>
       <Suspense fallback={<Loader />}>

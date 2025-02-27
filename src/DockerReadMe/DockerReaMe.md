@@ -63,7 +63,7 @@ C. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app:ro" -v "container-volume:/a
 
 
 2. A. The second mount `-v "/app/node_modules"` creates an anonymous volume for the node_modules directory, preventing it from being overwritten by the host's files.
-   a. Creates a separate volume for node_modules .
+   a. Creates a separate volume for node_modules. ( This is called "volume mounting" which prevents the container's node_modules from being overwritten )
    b. Prevents local node_modules from overwriting container's modules
 
 3. B. -v `"container-volume:/app/node_modules"` here `container-volume` is the name of the volume separated by `:`

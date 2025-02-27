@@ -4,8 +4,13 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
+# Copy package files and npmrc first
+COPY package*.json .npmrc ./
 
+# Copy env file
+COPY .env* ./
+
+# Install dependencies
 RUN npm install
 
 COPY . .
