@@ -54,18 +54,24 @@ B. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app" -v "container-volume:/app/
 
 C. `docker run -it --rm -p 3000:3000 -v "${pwd}:/app:ro" -v "container-volume:/app/node_modules" --name typescript-app typescript`
 
-**This approach uses two volume mounts:**
+**This approach uses Three volume mounts:**
 
-1. The first mount `-v "${pwd}:/app"` syncs your local directory with the container.Here volume in your command ( $(pwd):/app) is actually a bind mount, not a volume, so it doesn't need a volume name as it's directly mapping your current directory to the container.
+### This is bind mount Volume
+1. The first mount `-v "${pwd}:/app"` syncs your local directory with the container.Here volume in your command `( $(pwd):/app) is actually a bind mount`, not a volume, so it doesn't need a volume name as it's directly mapping your current directory to the container.
    a. Mounts your current directory ${pwd} to /app in the container .
    b. Any changes in your local src folder will be reflected in the container .
-   c.Changes made inside the container will appear in your local directory .
+   c. Changes made inside the container will appear in your local directory .
+   d. `it is called bind mount` becaus we have binded our local-hosts directory to container  directory. And here out host machine manages the volume.
 
-2. A. The second mount `-v "/app/node_modules"` creates an anonymous volume for the node_modules directory, preventing it from being overwritten by the host's files.
+### This is Anonymous Volume
+2. A. The second mount `-v "/app/node_modules"` creates an anonymous volume ( `it is called anonymous volume because no volume name is given` ) for the node_modules directory, preventing it from being overwritten by the host's files.
    a. Creates a separate volume for node_modules. ( This is called "volume mounting" which prevents the container's node_modules from being overwritten )
    b. Prevents local node_modules from overwriting container's modules
 
-3. B. -v `"container-volume:/app/node_modules"` here `container-volume` is the name of the volume separated by `:`
+### This is Named Volume
+3. B. -v `"container-volume:/app/node_modules"` here `container-volume` is the name of the volume separated by `:` and is called **Named Volume : because we have given volume name which is container-volume**. 
+
+### In case of Named and Anonymous Volume, Docker itself create and manages the volume.
 
 4. `${pwd}` is the current working directory on your host machine
 
