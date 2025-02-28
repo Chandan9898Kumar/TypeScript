@@ -1,53 +1,8 @@
 import { useState, useEffect, memo, useCallback, ChangeEvent } from "react";
 import styles from "./suggestion.module.css";
 import InputSuggestions from "../../Components/SuggestionField/InputSuggestion";
+import { Products } from "./InterfaceSuggestion";
 const URL: string = "https://dummyjson.com/products";
-
-interface Dimensions {
-  width: number;
-  height: number;
-  depth: number;
-}
-
-interface Meta {
-  createdAt: Date;
-  updatedAt: Date;
-  barcode: string | number;
-  qrCode: string;
-}
-
-interface Reviews {
-  rating: number;
-  comment: string;
-  date: Date;
-  reviewerName: string;
-  reviewerEmail: string;
-}
-
-interface Products {
-  availabilityStatus: string;
-  brand: string;
-  category: string;
-  description: string;
-  dimensions: Dimensions;
-  discountPercentage: number;
-  id: number;
-  images: string[];
-  meta: Meta;
-  minimumOrderQuantity: number;
-  price: number;
-  rating: number;
-  returnPolicy: string;
-  reviews: Reviews;
-  shippingInformation: string;
-  sku: string;
-  stock: number;
-  tags: string[];
-  thumbnail: string;
-  title: string;
-  //   warrantyInformation: string;
-  //   weight: number;
-}
 
 const AutoSuggestion = () => {
   const [data, setData] = useState<Products[]>([]);
@@ -91,7 +46,6 @@ const AutoSuggestion = () => {
     return <div>{isError}</div>;
   }
 
-  console.log(data, "data", fieldValue);
   return (
     <section>
       <h1>This is Auto-Suggestion Board</h1>
@@ -102,6 +56,7 @@ const AutoSuggestion = () => {
           placeholder="Search Items"
           value={fieldValue}
           onChange={handleFieldChange}
+          items={data}
         />
       </div>
       <ProductItems productDetails={data} />

@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, memo } from "react";
-
+import styles from "./input.module.css";
+import { Products } from "../../Pages/AutoSuggestion/InterfaceSuggestion";
 type Text = "text" | "password" | "email" | "number";
 
 interface SuggestionProps {
@@ -9,6 +10,7 @@ interface SuggestionProps {
   style?: React.CSSProperties;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  items: Products[];
 }
 
 const InputSuggestions: FC<SuggestionProps> = ({
@@ -18,19 +20,22 @@ const InputSuggestions: FC<SuggestionProps> = ({
   style = {},
   onChange,
   value,
+  items,
 }) => {
   return (
-    <section>
-      <InputField
-        type={type}
-        placeholder={placeholder}
-        className={className}
-        style={style}
-        value={value}
-        onChange={onChange}
-      />
+    <section className={styles.main}>
+      <div className={styles.container}>
+        <InputField
+          type={type}
+          placeholder={placeholder}
+          className={className}
+          style={style}
+          value={value}
+          onChange={onChange}
+        />
 
-      <SuggestionBox />
+        <SuggestionBox suggestionItems={items} />
+      </div>
     </section>
   );
 };
@@ -38,6 +43,7 @@ const InputSuggestions: FC<SuggestionProps> = ({
 InputSuggestions.displayName = "InputSuggestions";
 export default memo(InputSuggestions);
 
+type InputProps = Omit<SuggestionProps, "items">;
 const Field = ({
   type,
   placeholder,
@@ -45,25 +51,35 @@ const Field = ({
   style,
   value,
   onChange,
-}: SuggestionProps) => {
+}: InputProps) => {
   return (
-    <div>
-      <input
-        type={type}
-        placeholder={placeholder}
-        className={className}
-        style={style}
-        value={value}
-        onChange={onChange}
-      />
-    </div>
+    <input
+      type={type}
+      placeholder={placeholder}
+      className={className}
+      style={style}
+      value={value}
+      onChange={onChange}
+    />
   );
 };
 
 const InputField = memo(Field);
 
-const Suggestion = () => {
-  return <section>Suggestion</section>;
+interface SuggestionItemsProps {
+  suggestionItems: Products[];
+}
+
+const Suggestion = ({ suggestionItems }: SuggestionItemsProps) => {
+  
+
+  return (
+    <ul className={styles.suggestion}>
+      {suggestionItems.map((item) => {
+        return <li className={styles.titles} key={item.id}>{item.title}</li>;
+      })}
+    </ul>
+  );
 };
 
 const SuggestionBox = memo(Suggestion);
