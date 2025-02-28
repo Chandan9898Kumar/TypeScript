@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, useCallback, ChangeEvent } from "react";
+import { useState, useEffect, memo, ChangeEvent, useMemo } from "react";
 import styles from "./suggestion.module.css";
 import InputSuggestions from "../../Components/SuggestionField/InputSuggestion";
 import { Products } from "./InterfaceSuggestion";
@@ -8,7 +8,6 @@ const AutoSuggestion = () => {
   const [data, setData] = useState<Products[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<string>("");
-
   const [fieldValue, setFieldValue] = useState<string>("");
 
   const fetchProducts = async (): Promise<void> => {
@@ -31,12 +30,34 @@ const AutoSuggestion = () => {
     fetchProducts();
   }, []);
 
-  const handleFieldChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setFieldValue(event.target.value);
-    },
-    []
-  );
+  const debounced = (
+    callBackFun: (event: ChangeEvent<HTMLInputElement>) => void,
+    delay: number
+  ) => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    return function (this: void, ...args: [ChangeEvent<HTMLInputElement>]) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+
+      timer = setTimeout(() => {
+        callBackFun.call(this, args[0]);
+      }, delay);
+    };
+  };
+
+  const callbackFunction = (event: ChangeEvent<HTMLInputElement>) => {
+    setFieldValue(event.target.value);
+  };
+
+  const debouncedFunction = debounced(callbackFunction, 1000);
+
+  const debounceSearchResult = useMemo(() => {
+    return data.filter((item) =>
+      item.title.trim().toLowerCase().includes(fieldValue.toLowerCase())
+    );
+  }, [fieldValue, data]);
 
   if (isLoading) {
     return <div>Your Data is Being Loaded Please Wait ...</div>;
@@ -46,6 +67,10 @@ const AutoSuggestion = () => {
     return <div>{isError}</div>;
   }
 
+  const handleSelectValue = (value: string): void => {
+    setFieldValue(value);
+  };
+
   return (
     <section>
       <h1>This is Auto-Suggestion Board</h1>
@@ -54,12 +79,15 @@ const AutoSuggestion = () => {
         <InputSuggestions
           type="text"
           placeholder="Search Items"
-          value={fieldValue}
-          onChange={handleFieldChange}
-          items={data}
+          onChange={debouncedFunction}
+          items={debounceSearchResult}
+          searchField={fieldValue}
+          setSelectedItem={(selectedValue: string) =>
+            handleSelectValue(selectedValue)
+          }
         />
       </div>
-      <ProductItems productDetails={data} />
+      <ProductItems productDetails={debounceSearchResult} />
     </section>
   );
 };
@@ -71,6 +99,10 @@ interface DisplayItemProps {
 }
 
 const DisplayItems = ({ productDetails }: DisplayItemProps) => {
+  if (!productDetails?.length) {
+    return <div>No Result Found...</div>;
+  }
+
   return (
     <section>
       <ul className={styles.container}>
