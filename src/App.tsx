@@ -11,6 +11,7 @@ const StartRating = lazy(() => import("./Pages/StartRating/StarRating"));
 const Toggle = lazy(() => import("./Components/Toggle/Toggle"));
 const MessageComponent = lazy(() => import("./Pages/Message/Message"));
 const Stepper = lazy(() => import("./Pages/Stepper/Stepper"));
+const AutoSuggestion = lazy(()=>import('./Pages/AutoSuggestion/AutoSuggestion'))
 const App: React.FC = () => {
   return (
     <>
@@ -41,6 +42,7 @@ const App: React.FC = () => {
         <StartRating />
         <MessageComponent />
         <Stepper />
+        <AutoSuggestion />
       </Suspense>
     </>
   );
