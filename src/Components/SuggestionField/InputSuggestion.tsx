@@ -1,4 +1,12 @@
-import { ChangeEvent, FC, memo, useRef, useEffect } from "react";
+import {
+  ChangeEvent,
+  FC,
+  memo,
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import styles from "./input.module.css";
 import { Products } from "../../Pages/AutoSuggestion/InterfaceSuggestion";
 type Text = "text" | "password" | "email" | "number";
@@ -24,6 +32,22 @@ const InputSuggestions: FC<SuggestionProps> = ({
   searchField,
   setSelectedItem,
 }) => {
+  // Add local input state
+  const [inputValue, setInputValue] = useState(searchField);
+  // Update local state when searchField prop changes
+  useEffect(() => {
+    setInputValue(searchField);
+  }, [searchField]);
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+    onChange(e);
+  };
+
+  const handleSelectedItem = (value: string) => {
+    setInputValue(value);
+    setSelectedItem(value);
+  };
   return (
     <section className={styles.main}>
       <div className={styles.container}>
@@ -32,14 +56,14 @@ const InputSuggestions: FC<SuggestionProps> = ({
           placeholder={placeholder}
           className={className}
           style={style}
-          onChange={onChange}
-          searchField={searchField}
+          onChange={handleInputChange}
+          value={inputValue}
         />
 
         <SuggestionBox
           suggestionItems={items}
-          searchField={searchField}
-          setSelectedItem={setSelectedItem}
+          searchField={inputValue}
+          setSelectedItem={handleSelectedItem}
         />
       </div>
     </section>
@@ -51,22 +75,27 @@ export default memo(InputSuggestions);
 
 //        Input Field
 
-type InputProps = Omit<SuggestionProps, "items" | "setSelectedItem">;
+type InputProps = Omit<
+  SuggestionProps,
+  "items" | "setSelectedItem" | "searchField"
+> & {
+  value: string;
+}; //  & { value: string } adds a new property value of type string to the resulting type.
 const Field = ({
   type,
   placeholder,
   className,
   style,
   onChange,
-  searchField,
+  value,
 }: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.value = searchField;
+      inputRef.current.value = value;
     }
-  }, [searchField]);
+  }, [value]);
   return (
     <input
       ref={inputRef}
@@ -93,6 +122,68 @@ const Suggestion = ({
   searchField,
   setSelectedItem,
 }: SuggestionItemsProps) => {
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const listRef = useRef<HTMLUListElement>(null);
+  // Reset selectedIndex when searchField or suggestionItems change
+  useEffect(() => {
+    setSelectedIndex(-1);
+  }, [searchField, suggestionItems]);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+      // Only handle navigation if we have items
+      if (!suggestionItems?.length) return;
+
+      switch (e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          setSelectedIndex((prev) => {
+            const nextIndex = prev < suggestionItems.length - 1 ? prev + 1 : prev;
+            scrollItemIntoView(nextIndex);
+            return nextIndex;
+          });
+          break;
+
+        case "ArrowUp":
+          e.preventDefault();
+          setSelectedIndex((prev) => {
+            const nextIndex = prev > 0 ? prev - 1 : 0;
+            scrollItemIntoView(nextIndex);
+            return nextIndex;
+          });
+          break;
+
+        case "Enter":
+          e.preventDefault();
+          if (selectedIndex >= 0 && selectedIndex < suggestionItems.length) {
+            setSelectedItem(suggestionItems[selectedIndex].title);
+          }
+          break;
+
+        case "Escape":
+          setSelectedIndex(-1);
+          break;
+      }
+    },
+    [suggestionItems, selectedIndex, setSelectedItem]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
+  const scrollItemIntoView = (index: number) => {
+    if (listRef.current) {
+      const element = listRef.current.children[index] as HTMLElement;
+      if (element) {
+        element.scrollIntoView({
+          block: "nearest",
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
   // Early return if no search field
   if (!searchField) {
     return null;
@@ -108,13 +199,24 @@ const Suggestion = ({
   }
 
   return (
-    <ul className={styles.suggestion}>
-      {suggestionItems?.map((item) => {
+    <ul
+      ref={listRef}
+      className={styles.suggestion}
+      role="listbox"
+      aria-label="Suggestions"
+    >
+      {suggestionItems?.map((item, index) => {
         return (
           <li
-            className={styles.titles}
+            className={`${styles.titles} ${selectedIndex === index ? styles.active : ""}`}
             key={item.id}
-            onClick={() => setSelectedItem(item.title)}
+            role="option"
+            aria-selected={selectedIndex === index}
+            tabIndex={selectedIndex === index ? 0 : -1}
+            onClick={() => {
+              setSelectedItem(item.title);
+              setSelectedIndex(index);
+            }}
           >
             {item.title}
           </li>
