@@ -129,7 +129,8 @@ const Suggestion = ({
     setSelectedIndex(-1);
   }, [searchField, suggestionItems]);
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
       // Only handle navigation if we have items
       if (!suggestionItems?.length) return;
 
@@ -137,7 +138,8 @@ const Suggestion = ({
         case "ArrowDown":
           e.preventDefault();
           setSelectedIndex((prev) => {
-            const nextIndex = prev < suggestionItems.length - 1 ? prev + 1 : prev;
+            const nextIndex =
+              prev < suggestionItems.length - 1 ? prev + 1 : prev;
             scrollItemIntoView(nextIndex);
             return nextIndex;
           });
@@ -172,13 +174,18 @@ const Suggestion = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
+  //  This Function is likely used to scroll to a specific item in a list based on its index position.
   const scrollItemIntoView = (index: number) => {
+    // listRef.current: It's checking if the ref has a current value (i.e., if it's attached to a DOM element)
     if (listRef.current) {
+      // Gets the child element at the specified index from the ref's children.
+      //  The as HTMLElement is a TypeScript type assertion to treat the element as an HTML element.
       const element = listRef.current.children[index] as HTMLElement;
       if (element) {
+        // scrollIntoView : This is a built-in DOM method that scrolls the element into the visible area of its container
         element.scrollIntoView({
-          block: "nearest",
-          behavior: "smooth",
+          block: "nearest", // block: "nearest": Scrolls to the nearest edge of the container
+          behavior: "smooth", // behavior: "smooth": Creates a smooth scrolling animation instead of jumping instantly
         });
       }
     }
@@ -208,7 +215,9 @@ const Suggestion = ({
       {suggestionItems?.map((item, index) => {
         return (
           <li
-            className={`${styles.titles} ${selectedIndex === index ? styles.active : ""}`}
+            className={`${styles.titles} ${
+              selectedIndex === index ? styles.active : ""
+            }`}
             key={item.id}
             role="option"
             aria-selected={selectedIndex === index}
