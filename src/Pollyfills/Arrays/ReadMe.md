@@ -1,8 +1,37 @@
 ### Array Polyfills
 
+### 1. Map
+
 `Purpose ( interface Array<T> ): This interface declaration extends TypeScript's built-in Array interface to add a new custom method called customMap. This is essentially creating a polyfill for the native map method, but with a custom implementation.`
 
-Explanation :
+
+`Question :`  how this This interface declaration extends TypeScript's built-in Array interface to add a new custom method called customMap:
+
+`Explanation :`
+
+1. Interface Declaration Merging :
+```ts
+interface Array<T> { ... }
+```
+A. TypeScript uses "declaration merging" - when you declare an interface with the same name as an existing one
+
+B. Instead of replacing the original interface, it adds new members to it
+
+C. The original Array interface remains intact, and your new method is added to it
+
+
+2. Generic Type Parameters :
+
+```ts
+interface Array<T> {          // Original array type
+    customMap<U>(...)        // New type parameter for transformation
+}
+
+1. T represents the type of elements in the original array
+2. U represents the type of elements in the resulting array
+3. This allows transformation from type T to type U
+```
+
 
 ```ts
 //  Here, T is already known from the Array interface ( Array<T>), so we only need to declare <U> at the method level.
@@ -84,7 +113,7 @@ const stringNumbers = numbers.customMap((num) => num.toString());
 console.log(stringNumbers); // ['1', '2', '3', '4']
 ```
 
-### example: With explicitly specify the generic types when calling customMap.
+### Example: With explicitly specify the generic types when calling customMap.
 
 ```ts
 Array.prototype.customMap = function <T, U>(
@@ -172,7 +201,72 @@ The implementation needs both <T, U> because it's a standalone function that nee
 
 ```
 
-### Other example of multiple generic type parameters with examples:
+
+### 2. Filter
+
+
+```ts
+interface Array<T> {
+  customFilter(callback: (value: T, index: number, args: T[]) => boolean): T[];
+  //  Or We can also write like this :
+  //  customFilter: (callback: (value: T, index: number, args: T[]) => boolean) => T[];
+}
+
+// Array.prototype.filter = null
+Array.prototype.customFilter = function <T>(
+  callback: (value: T, index: number, args: T[]) => boolean
+): T[] {
+  if (typeof callback !== "function") {
+    throw new TypeError(`${callback} is not a function`);
+  }
+
+  const context = this;
+
+  if (!Array.isArray(context)) {
+    throw new Error("Should be an array");
+  }
+  if (!context.length) {
+    return context;
+  }
+
+  const newArray: T[] = [];
+  const Length = context.length;
+
+  for (let x = 0; x < Length; x++) {
+    const response = callback(context[x], x, context);
+    if (response) {
+      newArray.push(context[x]);
+    }
+  }
+
+  return newArray;
+};
+
+const data = [
+  { id: 1, price: 76 },
+  { id: 2, price: 545 },
+  { id: 3, price: 6 },
+  { id: 4, price: 45 },
+];
+
+const result = data.customFilter((value, index, args) => value.price < 50);
+
+console.log(result, "result");
+```
+`Note:`
+Here on Filter, we did not uses <U> Generics.
+because : 
+1. The callback returns type U (could be any type).
+2. filter's callback should always return a boolean. so used boolean instead of <U>. But In Map, we used <U>.
+
+`Filter's Purpose `
+  1. Filter is meant to be a predicate operation - it should only decide whether to keep or discard elements
+  2. It should always return a subset of the original array with the same type
+  3. The callback should return a boolean (true/false) decision
+
+
+
+### Example of multiple generic type parameters with examples:
 
 1. When to Use Single Generic <T>:
 
