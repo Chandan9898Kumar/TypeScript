@@ -179,7 +179,7 @@ const Suggestion = ({
     // listRef.current: It's checking if the ref has a current value (i.e., if it's attached to a DOM element)
     if (listRef.current) {
       // Gets the child element at the specified index from the ref's children.
-      //  The as HTMLElement is a TypeScript type assertion to treat the element as an HTML element.
+      // The as HTMLElement is a TypeScript type assertion to treat the element as an HTML element.
       const element = listRef.current.children[index] as HTMLElement;
       if (element) {
         // scrollIntoView : This is a built-in DOM method that scrolls the element into the visible area of its container
