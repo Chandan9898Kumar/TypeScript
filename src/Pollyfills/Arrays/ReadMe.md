@@ -10,6 +10,7 @@
 `Explanation :`
 
 1. Interface Declaration Merging :
+
 ```ts
 interface Array<T> { ... }
 ```
