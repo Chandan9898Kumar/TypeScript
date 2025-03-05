@@ -37,9 +37,9 @@ Array.prototype.customFilter = function<T> (callback:(value:T,index:number,args:
 
 
 
-const data = [{ id: 1, price: 76 }, { id: 2, price: 545 }, { id: 3, price: 6 }, { id: 4, price: 45 }]
+// const data = [{ id: 1, price: 76 }, { id: 2, price: 545 }, { id: 3, price: 6 }, { id: 4, price: 45 }]
 
-const result = data.customFilter((value, index, args) => value.price < 50)
+// const result = data.customFilter((value, index, args) => value.price < 50)
 
-console.log(result, 'result')
+// console.log(result, 'result')
 

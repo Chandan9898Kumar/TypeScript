@@ -36,14 +36,14 @@ if (!Array.prototype.customMap) {
   };
 }
 
-// Example usage:
-const numbers = [1, 2, 3, 4];
-const doubled = numbers.customMap((num) => num * 2);
-console.log(doubled); // [2, 4, 6, 8]
+// // Example usage:
+// const numbers = [1, 2, 3, 4];
+// const doubled = numbers.customMap((num) => num * 2);
+// console.log(doubled); // [2, 4, 6, 8]
 
-// Example with types
-const stringNumbers = numbers.customMap((num) => num.toString());
-console.log(stringNumbers); // ['1', '2', '3', '4']
+// // Example with types
+// const stringNumbers = numbers.customMap((num) => num.toString());
+// console.log(stringNumbers); // ['1', '2', '3', '4']
 
 
 

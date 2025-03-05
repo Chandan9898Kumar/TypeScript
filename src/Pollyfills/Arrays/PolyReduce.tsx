@@ -1,9 +1,9 @@
 interface Array<T> {
-  customReduce<U>(callback: (accum: U, current: T, index: number, array: T[]) => U,initialValue?: U): U;
+  customReduce<U>(callback: (accum: U, current: T, index: number, array: T[]) => U,initialValue?: U): U | T[];
 }
 
 Array.prototype.customReduce = function <T, U>(
-  callback: (accum: U, current: T, index: number, array: T[]) => U,initialValue?: U): U {
+  callback: (accum: U, current: T, index: number, array: T[]) => U,initialValue?: U): U  | T[] {
 
   if (typeof callback !== "function") {
     throw new TypeError("callback should be a function");
@@ -11,6 +11,14 @@ Array.prototype.customReduce = function <T, U>(
 
   if (!Array.isArray(this)) {
     throw new TypeError("Should be an array");
+  }
+
+  
+ // Type assertion to ensure 'this' is treated as an array
+  const arrays = this as unknown as T[];
+
+  if (!arrays.length) {
+    return arrays
   }
 
   if (this.length === 0 && arguments.length < 2) {
@@ -35,11 +43,11 @@ Array.prototype.customReduce = function <T, U>(
 };
 
 // Example usage
-const data = [1, 2, 3, 4, 5];
+// const data = [1, 2, 3, 4, 5];
 
-const result = data.customReduce((acc, curr) => acc + curr, 10);
+// const result = data.customReduce((acc, curr) => acc + curr, 10);
 
-console.log(result); // Output: 25
+// console.log(result); // Output: 25
 
 /*
 
