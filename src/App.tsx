@@ -36,6 +36,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <Otp />
         <Carousel />
         <TrafficLight />
         <PausableCounter />
@@ -44,7 +45,7 @@ const App: React.FC = () => {
         <MessageComponent />
         <Stepper />
         <AutoSuggestion />
-        <Otp />
+        
       </Suspense>
     </>
   );
