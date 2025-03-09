@@ -66,11 +66,9 @@ export default Otp;
 
 When you type any character (including space) in an input field, two things happen by default: [2]
 
-The browser captures the keypress event
-
-The browser then adds that character to the input field
-
-event.preventDefault() stops the browser's default behavior from occurring. In this case, it prevents the space character from being added to the input field. [3]
+1. The browser captures the keypress event
+2. The browser then adds that character to the input field
+3. event.preventDefault() stops the browser's default behavior from occurring. In this case, it prevents the space character from being added to the input field. [3]
 
 1. Without preventDefault():
 
