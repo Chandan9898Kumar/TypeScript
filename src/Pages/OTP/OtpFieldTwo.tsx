@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent, KeyboardEvent } from "react";
+import { useState, useRef, ChangeEvent, KeyboardEvent,useCallback,ClipboardEvent } from "react";
 import styles from "./otp.module.css";
 
 export default function InputFocusPartTwo() {
@@ -26,6 +26,31 @@ export default function InputFocusPartTwo() {
     }
   };
 
+  const handlePaste = useCallback((event: ClipboardEvent<HTMLInputElement>) => {
+    // Prevent default paste behavior
+    event.preventDefault();
+    
+    // Get pasted data and create optimized array in one go
+    const pastedData = event.clipboardData
+      .getData("text")
+      .slice(0, inputValue.length)
+      .split("");
+      
+    // Direct array assignment instead of spread operator
+    setInputValue(oldValue => {
+      const newFieldValue = new Array(oldValue.length);
+      for (let i = 0; i < pastedData.length; i++) {
+        newFieldValue[i] = pastedData[i];
+      }
+      return newFieldValue;
+    });
+  
+    // Focus optimization using requestAnimationFrame
+    requestAnimationFrame(() => {
+      inputFocus.current[inputValue.length - 1]?.focus();
+    });
+  }, [inputValue]);
+  
 
   return (
     <div>
@@ -42,7 +67,9 @@ export default function InputFocusPartTwo() {
               index={index}
               handleChange={handleChange}
               handleKeyDown={handleKeyDown}
+              handlePaste={handlePaste}
               inputRef={inputFocus}
+              
             />
           );
         })}
@@ -61,6 +88,7 @@ interface OptFieldProps {
     event: KeyboardEvent<HTMLInputElement>,
     index: number
   ) => void;
+  handlePaste:(event:ClipboardEvent<HTMLInputElement>)=>void,
   inputRef: React.RefObject<(HTMLInputElement | null)[]>;
 }
 
@@ -72,6 +100,7 @@ const OtpField = ({
   handleKeyDown,
   index,
   inputRef,
+  handlePaste
 }: OptFieldProps) => {
   return (
     <div className="main">
@@ -82,7 +111,35 @@ const OtpField = ({
         maxLength={maxLength}
         onChange={(event) => handleChange(event, index)}
         onKeyDown={(event) => handleKeyDown(event, index)}
+        onPaste={handlePaste}
       />
     </div>
   );
 };
+
+
+/*
+Let me explain how requestAnimationFrame (rAF) works:
+
+Core Purpose :
+It's a browser API that synchronizes your JavaScript code execution with the browser's natural refresh rate (typically 60fps) [2]
+Helps create smoother animations by executing code at the optimal time before the next screen repaint
+
+
+
+Key Benefits :
+  Automatically matches monitor's refresh rate (usually 60Hz = every 16.7ms)
+  Pauses when tab is inactive, saving CPU/battery
+  Better performance than setInterval/setTimeout
+  Prevents visual artifacts and screen tearing
+
+
+Here, it's used to:
+  Ensure the focus operation happens at the optimal time
+  Prevent potential visual glitches during DOM updates
+  Handle focus change smoothly after state updates
+  Browser Optimization :
+  Browser optimizes multiple rAF calls into a single reflow/repaint
+  Automatically adjusts timing based on system performance
+  Reduces CPU usage when page is in background
+*/
