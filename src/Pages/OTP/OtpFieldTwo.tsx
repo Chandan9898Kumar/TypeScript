@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEvent, KeyboardEvent,useCallback,ClipboardEvent } from "react";
+import { useState, useRef, ChangeEvent, KeyboardEvent, useCallback, ClipboardEvent } from "react";
 import styles from "./otp.module.css";
 
 export default function InputFocusPartTwo() {
