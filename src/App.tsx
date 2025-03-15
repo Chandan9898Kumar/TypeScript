@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense,useState } from "react";
 import "./App.css";
 import Loader from "./Components/Loader/Loader";
 const Carousel = lazy(() => import("./Pages/Carousel/Carousel"));
@@ -13,7 +13,9 @@ const MessageComponent = lazy(() => import("./Pages/Message/Message"));
 const Stepper = lazy(() => import("./Pages/Stepper/Stepper"));
 const AutoSuggestion = lazy(()=>import('./Pages/AutoSuggestion/AutoSuggestion'))
 const InputFocusPartTwo = lazy(()=>import('./Pages/OTP/OtpFieldTwo'))
+const ScrollOnElement = lazy(()=>import('./Components/InfiniteScroll/ScrollerOnElement'))
 const App: React.FC = () => {
+  const [scrollData, setScrollData] = useState<number>(50);
   return (
     <>
       <Suspense fallback={<Loader />}>
@@ -45,7 +47,7 @@ const App: React.FC = () => {
         <MessageComponent />
         <Stepper />
         <AutoSuggestion />
-        
+        <ScrollOnElement scrollData={scrollData}  setScrollData={setScrollData}/>
       </Suspense>
     </>
   );
