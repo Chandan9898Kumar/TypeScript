@@ -22,17 +22,22 @@ interface ScrollerProps {
   isError: string | null;
   onPageSet: Dispatch<SetStateAction<number>>;
 }
-const Scroller = ({ data, isLoading, isError, onPageSet }: ScrollerProps) => {
+
+interface ObserverEntity {
+  isIntersecting: boolean;
+}
+
+const Scroller = ({ data, isLoading, onPageSet }: ScrollerProps) => {
   const elementToBeObserved = useRef<HTMLDivElement | null>(null);
 
   const handleObserver = useCallback(
-    (entities) => {
-      console.log("entities", entities[0].isIntersecting);
+    (entities: ObserverEntity[]) => {
       const intersectingElement = entities[0];
-
       if (intersectingElement.isIntersecting) {
-        document.startViewTransition(() => {
-          onPageSet((prev) => prev + 1);
+        requestAnimationFrame(() => {
+          document.startViewTransition(() => {
+            onPageSet((prev) => prev + 1);
+          });
         });
       }
     },
@@ -42,23 +47,19 @@ const Scroller = ({ data, isLoading, isError, onPageSet }: ScrollerProps) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: "0px",
-      threshold: 1.0,
+      rootMargin: "20px", // Increased margin for earlier loading
+      threshold: 0.5, // Lower threshold for better performance
     };
     const observer = new IntersectionObserver(handleObserver, options);
 
-    if (elementToBeObserved.current) {
+    if (elementToBeObserved.current && !!data.length) {
       observer.observe(elementToBeObserved.current);
     }
 
     return () => {
       observer.disconnect();
     };
-  }, [isLoading, handleObserver]);
-
-  if (!isLoading && !data.length) {
-    return;
-  }
+  }, [isLoading, handleObserver, data]);
 
   return (
     <section>
@@ -67,7 +68,7 @@ const Scroller = ({ data, isLoading, isError, onPageSet }: ScrollerProps) => {
           {data?.map((item, index) => {
             return <p key={index}>{item.Title}</p>;
           })}
-          {isLoading && (
+          {!isLoading && !!data.length && (
             <div ref={elementToBeObserved}>
               <h2 style={{ textAlign: "center" }}> Loading ...</h2>
             </div>

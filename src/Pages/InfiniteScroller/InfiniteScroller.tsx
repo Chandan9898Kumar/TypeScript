@@ -12,16 +12,16 @@ interface DataProp {
 const InfiniteScrollerComponent = () => {
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<DataProp[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<string | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
     const getData = async () => {
-      setIsError(null);
-      setIsLoading(false);
       try {
+        setIsError(null);
+        setIsLoading(true);
         // Add timeout to abort long-running requests
         const timeoutId = setTimeout(() => controller.abort(), 5000);
         const response = await fetch(
@@ -38,13 +38,14 @@ const InfiniteScrollerComponent = () => {
           throw new Error("No results found");
         }
         setData((prevData) => [...prevData, ...result.Search]);
-        setIsLoading(true);
       } catch (error) {
         if ((error as Error).name === "AbortError") {
           setIsError("Request timed out");
         } else {
           setIsError((error as Error).message);
         }
+      } finally {
+        setIsLoading(false);
       }
     };
     getData();
@@ -53,7 +54,7 @@ const InfiniteScrollerComponent = () => {
       controller.abort();
     };
   }, [page]);
-  console.log(page, "page >>>>>>>>>>>>>>>>>>>>>>>>>", isLoading, data);
+
   return (
     <section>
       <h1>Infinite Scroller</h1>
