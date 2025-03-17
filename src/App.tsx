@@ -14,6 +14,7 @@ const Stepper = lazy(() => import("./Pages/Stepper/Stepper"));
 const AutoSuggestion = lazy(()=>import('./Pages/AutoSuggestion/AutoSuggestion'))
 const InputFocusPartTwo = lazy(()=>import('./Pages/OTP/OtpFieldTwo'))
 const ScrollOnElement = lazy(()=>import('./Components/InfiniteScroll/ScrollerOnElement'))
+const InfiniteScroller = lazy(()=>import('./Pages/InfiniteScroller/InfiniteScroller'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <InfiniteScroller />
         <InputFocusPartTwo />
         <Carousel />
         <TrafficLight />
