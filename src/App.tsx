@@ -39,7 +39,6 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
-        <InfiniteScroller />
         <InputFocusPartTwo />
         <Carousel />
         <TrafficLight />
@@ -50,6 +49,7 @@ const App: React.FC = () => {
         <Stepper />
         <AutoSuggestion />
         <ScrollOnElement scrollData={scrollData}  setScrollData={setScrollData}/>
+        <InfiniteScroller />
       </Suspense>
     </>
   );
