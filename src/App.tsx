@@ -15,6 +15,7 @@ const AutoSuggestion = lazy(()=>import('./Pages/AutoSuggestion/AutoSuggestion'))
 const InputFocusPartTwo = lazy(()=>import('./Pages/OTP/OtpFieldTwo'))
 const ScrollOnElement = lazy(()=>import('./Components/InfiniteScroll/ScrollerOnElement'))
 const InfiniteScroller = lazy(()=>import('./Pages/InfiniteScroller/InfiniteScroller'))
+const FeatureFlagPage = lazy(()=>import('./Pages/FeatureFlagPage/FeatureFlagPage'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -39,6 +40,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <FeatureFlagPage />
         <InputFocusPartTwo />
         <Carousel />
         <TrafficLight />
@@ -50,6 +52,7 @@ const App: React.FC = () => {
         <AutoSuggestion />
         <ScrollOnElement scrollData={scrollData}  setScrollData={setScrollData}/>
         <InfiniteScroller />
+       
       </Suspense>
     </>
   );
