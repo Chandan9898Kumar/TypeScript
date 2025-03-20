@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect, FC, memo } from "react";
 
 interface FeatureFlagState {
   [key: string]: boolean;
@@ -30,4 +30,4 @@ const FeatureFlags: FC<FeatureFlagsProps> = ({ feature, children }) => {
   return features[feature] && children;
 };
 
-export default FeatureFlags;
+export default memo(FeatureFlags);
