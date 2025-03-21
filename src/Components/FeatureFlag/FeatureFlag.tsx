@@ -1,4 +1,4 @@
-import { useState, useEffect, FC, memo } from "react";
+import { FC, memo, useEffect, useState } from "react";
 
 interface FeatureFlagState {
   [key: string]: boolean;
