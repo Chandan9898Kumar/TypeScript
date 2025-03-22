@@ -1,0 +1,62 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(3, 50px); /* Fixed width instead of 1fr */
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.grid {
+  background-color: aliceblue;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: 1px solid rgb(185, 232, 185);
+  cursor: pointer;
+}
+
+.grid.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.info {
+  font-size: 20px;
+  margin: 20px auto;
+}
+
+.info .text {
+  color: cornflowerblue;
+}
+
+[data-player="true"] {
+  color: red;
+}
+
+[data-player="false"] {
+  color: plum;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.btn button {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.5s linear;
+  &:hover {
+    background-color: plum;
+    color: white;
+  }
+}
