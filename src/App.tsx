@@ -16,6 +16,7 @@ const InputFocusPartTwo = lazy(()=>import('./Pages/OTP/OtpFieldTwo'))
 const ScrollOnElement = lazy(()=>import('./Components/InfiniteScroll/ScrollerOnElement'))
 const InfiniteScroller = lazy(()=>import('./Pages/InfiniteScroller/InfiniteScroller'))
 const FeatureFlagPage = lazy(()=>import('./Pages/FeatureFlagPage/FeatureFlagPage'))
+const StopWatch = lazy(()=>import('./Pages/StopWatch/StopWatch'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -40,6 +41,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <StopWatch />
         <FeatureFlagPage />
         <InputFocusPartTwo />
         <Carousel />
