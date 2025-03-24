@@ -17,7 +17,6 @@ export const Component1 = () => {
           <div className="clash-card__unit-name">The Barbarian</div>
         </div>
       </div>
-      {/* end clash-card barbarian*/}
     </div>
   );
 };
