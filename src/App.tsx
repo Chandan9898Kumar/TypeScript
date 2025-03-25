@@ -18,6 +18,7 @@ const InfiniteScroller = lazy(()=>import('./Pages/InfiniteScroller/InfiniteScrol
 const FeatureFlagPage = lazy(()=>import('./Pages/FeatureFlagPage/FeatureFlagPage'))
 const StopWatch = lazy(()=>import('./Pages/StopWatch/StopWatch'))
 const TicTacToe = lazy(()=>import('./Pages/TicTaeToe/TicTacToe'))
+const FindRingsAndRodCombination = lazy(()=>import('./Pages/RingsAndRods/RingsRods'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -42,6 +43,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <FindRingsAndRodCombination />
         <TicTacToe />
         <StopWatch />
         <FeatureFlagPage />

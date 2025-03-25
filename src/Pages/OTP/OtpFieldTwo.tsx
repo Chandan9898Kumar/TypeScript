@@ -103,7 +103,7 @@ const OtpField = ({
   handlePaste
 }: OptFieldProps) => {
   return (
-    <div className="main">
+    <div className={styles.main}>
       <input
         ref={(event) => (inputRef.current![index] = event)}
         type={type}
