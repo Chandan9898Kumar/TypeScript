@@ -84,7 +84,7 @@ export default FindRingsAndRodCombination;
 /*
 Return the number of rods that have all three colors of rings on them." 
 
- "rings = ""B0B6G0R6R0R6G9""  Output: 1 
+"rings = ""B0B6G0R6R0R6G9""  Output: 1 
 Rod 0
 
 You are given a string rings representing rings placed on rods.
