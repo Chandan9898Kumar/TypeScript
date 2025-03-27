@@ -95,6 +95,7 @@ There are only 3 colors:
 'R' = Red
 'G' = Green
 'B' = Blue
+
 There are 10 rods, numbered 0 through 9.
 
 
