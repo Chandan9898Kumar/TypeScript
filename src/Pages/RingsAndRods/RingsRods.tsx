@@ -115,6 +115,7 @@ Output: 1
 
 
 Input: "B0G0B1R1G2R2B3R3"
+
 Explanation:
 - Rod 0: B, G (❌ missing R)
 - Rod 1: B, R (❌ missing G)
