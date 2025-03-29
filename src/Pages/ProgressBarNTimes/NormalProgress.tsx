@@ -29,20 +29,20 @@ const NormalProgressBar=()=> {
   }, [progressCount]);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h1>Progress Bars Demo</h1>
 
-      <div className="progress-container">{progressBars}</div>
+      <div className={styles.progressContainer}>{progressBars}</div>
 
-      <div className="button-group">
+      <div className={styles.button_group}>
         <button
           onClick={handleAddProgress}
           disabled={progressCount >= 10}
-          className="button"
+          className={styles.button}
         >
           Add Progress Bar
         </button>
-        <button onClick={handleReset} className="button">
+        <button onClick={handleReset} className={styles.button}>
           Reset
         </button>
       </div>
