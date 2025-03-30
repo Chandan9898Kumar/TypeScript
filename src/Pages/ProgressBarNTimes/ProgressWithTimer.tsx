@@ -29,6 +29,7 @@ const ProgressWithTimer = () => {
       <div className={styles.btnTwo}>
         <button onClick={handleClick}>Add</button>
       </div>
+      
     </div>
   );
 };
