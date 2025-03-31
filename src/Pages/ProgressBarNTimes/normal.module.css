@@ -113,3 +113,45 @@
   }
 }
 
+
+
+/*  Progress on Complete */
+
+.threeContainer {
+  background-color: rgb(243, 239, 235);
+  height: 40px;
+  align-content: center;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.threeContainer .threeMain {
+  background-color: aliceblue;
+  height: inherit;
+  overflow: hidden;
+  align-content: center;
+  width: 0%;
+  transition: width 1s linear;
+}
+
+
+.btns {
+  text-align: center;
+  width: 100%;
+}
+
+.bt {
+  width: 200px;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: 500;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1s;
+  &:hover {
+    background-color: plum;
+    color: white;
+  }
+}
