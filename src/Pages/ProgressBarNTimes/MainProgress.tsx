@@ -1,6 +1,6 @@
 import NormalProgressBar from "./NormalProgress";
+import ProgressOnComplete from './ProgressOnComplete';
 import ProgressWithTimer from "./ProgressWithTimer";
-import ProgressOnComplete from './ProgressOnComplete'
 const MainProgress = () => {
   return (
     <>
