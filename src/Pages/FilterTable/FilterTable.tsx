@@ -87,34 +87,48 @@ const FilterTable = () => {
 
   const optimizedData = useMemo(() => {
     const isChecked = checked.find((item) => item.checked);
-
-    if (isChecked) {
-      if (isChecked.condition === "greater") {
-        return data.filter((item) => item.price > isChecked.value);
-      } else {
-        return data.filter((item) => item.price < isChecked.value);
-      }
-    } else if (debouncedValue) {
-      return data.filter((item) =>
-        item.title.toLowerCase().includes(debouncedValue.toLowerCase())
-      );
-    } else {
+    // Early return if no filters are applied
+    if (!isChecked && !debouncedValue) {
       return data;
     }
+  
+    // Create a single filter function that combines all conditions
+    return data.filter((item) => {
+      // Price filter
+      if (isChecked) {
+        const priceCondition = isChecked.condition === "greater" 
+          ? item.price > isChecked.value
+          : item.price < isChecked.value;
+          
+        if (!priceCondition) return false;
+      }
+      
+      // Text search filter
+      if (debouncedValue) {
+        return item.title.toLowerCase().includes(debouncedValue.toLowerCase());
+      }
+      
+      return true;
+    });
   }, [debouncedValue, data, checked]);
+  
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue("");
-    const newChecked = checked.map((item) => {
-      if (item.id === parseInt(event.target.id)) {
-        item.checked = !item.checked;
-      } else {
-        item.checked = false;
-      }
-      return item;
-    });
+    
+    // Convert ID once instead of parsing multiple times
+    const targetId = parseInt(event.target.id);
+    
+    // Use map with early return for better performance
+    const newChecked = checked.map(item => 
+      item.id === targetId 
+        ? { ...item, checked: !item.checked }
+        : { ...item, checked: false }
+    );
+  
     setChecked(newChecked);
   };
+  
 
   if (isLoading) {
     return <div className="loading">Loading...</div>;
