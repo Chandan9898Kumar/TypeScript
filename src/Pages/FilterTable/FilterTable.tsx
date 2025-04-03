@@ -154,8 +154,8 @@ const FilterTable = () => {
           <label>
             {checked?.map((item) => {
               return (
-                <div key={item.id}>
-                  {item.title} {"  "}
+                <div key={item?.id}>
+                  {item?.title} {"  "}
                   <input
                     id={item.id.toString()}
                     type="checkbox"
