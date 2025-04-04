@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo, ChangeEvent } from "react";
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
 import "./style.css";
 
 const columns = ["id", "title", "price", "rating", "returnPolicy"];
