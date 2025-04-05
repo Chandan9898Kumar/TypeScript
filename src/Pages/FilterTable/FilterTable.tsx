@@ -94,6 +94,7 @@ const FilterTable = () => {
   
     // Create a single filter function that combines all conditions
     return data.filter((item) => {
+      
       // Price filter
       if (isChecked) {
         const priceCondition = isChecked.condition === "greater" 
