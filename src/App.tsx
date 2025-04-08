@@ -21,6 +21,7 @@ const TicTacToe = lazy(()=>import('./Pages/TicTaeToe/TicTacToe'))
 const FindRingsAndRodCombination = lazy(()=>import('./Pages/RingsAndRods/RingsRods'))
 const MainProgress = lazy(() => import("./Pages/ProgressBarNTimes/MainProgress"));
 const FilterTable = lazy(()=>import('./Pages/FilterTable/FilterTable'))
+const Practice = lazy(()=>import('./Pages/TestingPractice/Practice'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -45,6 +46,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <Practice />
         <FilterTable />
         <MainProgress />
         <FindRingsAndRodCombination />

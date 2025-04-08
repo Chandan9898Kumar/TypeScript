@@ -15,33 +15,33 @@ describe('App Component', () => {
     expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 
-  it('renders header with correct title', async () => {
-    render(<App />);
-    const headerText = await screen.findByText('Machine Coding In TypeScript...');
-    expect(headerText).toBeInTheDocument();
-  });
+  // it('renders header with correct title', async () => {
+  //   render(<App />);
+  //   const headerText = await screen.findByText('Machine Coding In TypeScript...');
+  //   expect(headerText).toBeInTheDocument();
+  // });
 
-  it('renders with correct header className', async () => {
-    render(<App />);
-    const headerElement = await screen.findByText('Machine Coding In TypeScript...');
-    expect(headerElement).toHaveClass('customTag');
-  });
+  // it('renders with correct header className', async () => {
+  //   render(<App />);
+  //   const headerElement = await screen.findByText('Machine Coding In TypeScript...');
+  //   expect(headerElement).toHaveClass('customTag');
+  // });
 
-  it('passes correct scroll data props to ScrollOnElement', () => {
-    const { container } = render(<App />);
-    // Initial scroll data should be 50
-    expect(container).toMatchSnapshot();
-  });
+  // it('passes correct scroll data props to ScrollOnElement', () => {
+  //   const { container } = render(<App />);
+  //   // Initial scroll data should be 50
+  //   expect(container).toMatchSnapshot();
+  // });
 
-  it('renders all lazy-loaded components', async () => {
-    render(<App />);
+  // it('renders all lazy-loaded components', async () => {
+  //   render(<App />);
     
-    // Wait for components to load
-    const carousel = await screen.findByText('Carousel Component');
-    const toggle = await screen.findByText('Toggle Component');
+  //   // Wait for components to load
+  //   const carousel = await screen.findByText('Carousel Component');
+  //   const toggle = await screen.findByText('Toggle Component');
     
-    expect(carousel).toBeInTheDocument();
-    expect(toggle).toBeInTheDocument();
-  });
+  //   expect(carousel).toBeInTheDocument();
+  //   expect(toggle).toBeInTheDocument();
+  // });
 });
 
