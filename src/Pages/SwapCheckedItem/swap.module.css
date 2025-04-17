@@ -1,0 +1,287 @@
+.container {
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --background-color: #f8fafc;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--background-color);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.container h1 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.parent {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 2rem 0;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  .parent {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* Animations for transfers */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Utility classes for animations */
+.slideIn {
+  width: 100%;
+  animation: slideIn 0.3s ease-out;
+}
+
+.fadeIn {
+  width: 100%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Print styles */
+@media print {
+  .container {
+    box-shadow: none;
+    margin: 0;
+    padding: 1rem;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .container {
+    --primary-color: #000;
+    --secondary-color: #333;
+    --background-color: #fff;
+    --border-color: #000;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .slideIn,
+  .fadeIn {
+    animation: none;
+  }
+}
+
+/* Checkbox container */
+.check {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Individual checkbox item */
+.check > div {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.check > div:hover {
+  background-color: #f8fafc;
+}
+
+/* Custom checkbox styling */
+.check input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* Checkbox hover state */
+.check input[type="checkbox"]:hover {
+  background-color: #eff6ff;
+}
+
+/* Checkbox checked state */
+.check input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Checkmark */
+.check input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Focus state */
+.check input[type="checkbox"]:focus {
+  outline: 2px solid #bfdbfe;
+  outline-offset: 2px;
+}
+
+/* Value text */
+.check > div {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+/* Animation for checkbox */
+@keyframes checkboxPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.check input[type="checkbox"]:checked {
+  animation: checkboxPop 0.2s ease-in-out;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .check input[type="checkbox"] {
+    border-width: 2px;
+  }
+
+  .check input[type="checkbox"]:checked {
+    background-color: black;
+    border-color: black;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .check input[type="checkbox"]:checked {
+    animation: none;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .check > div {
+    padding: 0.75rem;
+  }
+
+  .check input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+  }
+
+  .check input[type="checkbox"]:checked::after {
+    left: 8px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .container {
+    box-shadow: none;
+    max-width: none;
+  }
+
+  .check input[type="checkbox"] {
+    border: 2px solid black;
+  }
+
+  .check input[type="checkbox"]:checked {
+    background-color: black;
+  }
+}
+
+/* Button.module.css */
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 150px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}

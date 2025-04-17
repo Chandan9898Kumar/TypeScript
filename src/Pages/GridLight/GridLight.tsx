@@ -25,9 +25,7 @@ export default function GridLight() {
   }, [lightOn]);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    const numbers = parseInt(
-      (event.target as HTMLButtonElement).dataset.index!
-    );
+    const numbers = parseInt((event.target as HTMLButtonElement).dataset.index!);
     const newLights = Array.from(new Set([numbers, ...lightOn]));
     document.startViewTransition(() => {
       setLightOn(newLights);

@@ -24,6 +24,8 @@ const MainProgress = lazy(() => import("./Pages/ProgressBarNTimes/MainProgress")
 const FilterTable = lazy(()=>import('./Pages/FilterTable/FilterTable'))
 const HigherOrderDashBoard = lazy(()=>import('./Pages/HigherOrderComponent/MainOrder'))
 const GridLight  = lazy(()=>import('./Pages/GridLight/GridLight'))
+
+const SwapComponent = lazy(()=>import('./Pages/SwapCheckedItem/SwapItemComponent'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -48,6 +50,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <SwapComponent />
         <GridLight />
         <HigherOrderDashBoard />
         <FilterTable />
