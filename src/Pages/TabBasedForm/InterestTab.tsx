@@ -1,22 +1,38 @@
-import {memo} from 'react';
-const Interest = ({ checkboxes = [], handleCheckboxChange = () => {} }) => {
+import { memo } from "react";
+import styles from "./tab.module.css";
+
+interface InterestData {
+  id: number;
+  name: string;
+  checked: boolean;
+  type: string;
+}
+
+interface InterestProps {
+  data: InterestData[];
+  changeFunction: (
+    id: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+}
+
+const Interest = ({ data = [], changeFunction = () => {} }: InterestProps) => {
   return (
-    <>
-      <div style={{ marginBottom: "1rem" }}>
-        {checkboxes?.map((checkbox) => (
-          <div key={checkbox.id} style={{ marginBottom: "0.5rem" }}>
-            <label>
-              <input
-                type="checkbox"
-                checked={checkbox.checked}
-                onChange={() => handleCheckboxChange(checkbox.id)}
-              />
-              <span style={{ marginLeft: "0.5rem" }}>{checkbox.name}</span>
-            </label>
-          </div>
-        ))}
-      </div>
-    </>
+    <div className={styles.interest_container}>
+      {data?.map((checkbox) => (
+        <div key={checkbox.id} className={styles.checkbox_group}>
+          <label className={styles.checkbox_label}>
+            <input
+              className={styles.checkbox_input}
+              type="checkbox"
+              checked={checkbox.checked}
+              onChange={(event) => changeFunction(checkbox.id, event)}
+            />
+            <span className="checkbox-text">{checkbox.name}</span>
+          </label>
+        </div>
+      ))}
+    </div>
   );
 };
 

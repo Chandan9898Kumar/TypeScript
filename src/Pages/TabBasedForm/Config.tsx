@@ -5,12 +5,12 @@ export const PageData = {
     { id: 3, name: "email", placeholder: "email", value: "", type: "email" },
   ],
   Interest: [
-    { id: 1, name: "Coding", checked: false },
-    { id: 2, name: "JavaScript", checked: false },
-    { id: 3, name: "TypeScript", checked: false },
+    { id: 1, name: "Coding", checked: false, type: "checkbox" },
+    { id: 2, name: "JavaScript", checked: false, type: "checkbox" },
+    { id: 3, name: "TypeScript", checked: false, type: "checkbox" },
   ],
   Settings: [
-    { id: 1, name: "dark", checked: false },
-    { id: 2, name: "light", checked: false },
+    { id: 1, name: "dark", checked: false, type: "checkbox" },
+    { id: 2, name: "light", checked: false, type: "checkbox" },
   ],
 };

@@ -5,7 +5,7 @@ import Public from "./PublicTab";
 import Settings from "./SettingsTab";
 import TabButton from "./TabButton";
 import Tabs from "./Tabs";
-
+import styles from "./tab.module.css";
 type Tab = "Public" | "Interest" | "Setting";
 
 const Pages = [Public, Interest, Settings];
@@ -19,14 +19,52 @@ interface Button {
   Submit: () => void;
 }
 
+interface PublicData {
+  id: number;
+  name: string;
+  placeholder: string;
+  value: string;
+  type: string;
+}
+
+interface InterestSettingData {
+  id: number;
+  name: string;
+  checked: boolean;
+  type:string;
+}
+interface TabsData {
+  [index: string]: {
+    data: PublicData[] | InterestSettingData[];
+    setData:
+      | React.Dispatch<React.SetStateAction<PublicData[]>>
+      | React.Dispatch<React.SetStateAction<InterestSettingData[]>>;
+  };
+}
+
 export default function TabBasedForm() {
   const [activeTab, setActiveTab] = useState(0);
-  const [publicData, setPublic] = useState(PageData.Public);
-  const [interestData, setInterestData] = useState(PageData.Interest);
-  const [settingData, setSettingData] = useState(PageData.Settings);
+  const [publicData, setPublic] = useState<PublicData[]>(PageData.Public);
+  const [interestData, setInterestData] = useState<InterestSettingData[]>(PageData.Interest);
+  const [settingData, setSettingData] = useState<InterestSettingData[]>(PageData.Settings);
   const [userInformation, setUserInformation] = useState({});
 
   const Component = Pages[activeTab];
+
+  const TabsData: TabsData = {
+    Public: {
+      data: publicData,
+      setData: setPublic,
+    },
+    Interest: {
+      data: interestData,
+      setData: setInterestData,
+    },
+    Setting: {
+      data: settingData,
+      setData: setSettingData,
+    },
+  };
 
   //  Button Component
   const BUTTONS: Button = useMemo(
@@ -51,20 +89,29 @@ export default function TabBasedForm() {
     [BUTTONS]
   );
 
-  console.log("Public Data", publicData);
-  console.log("Interest Data", interestData);
-  console.log("Setting Data", settingData);
-  console.log("User Information", userInformation);
+  // console.log("Public Data", publicData);
+  // console.log("Interest Data", interestData);
+  // console.log("Setting Data", settingData);
+  // console.log("User Information", TabsData[TABS[activeTab]]);
   return (
-    <div>
-      <h1>Tab Based Form</h1>
-      <Tabs tabs={TABS} activeTab={activeTab} />
-      <Component />
-      <TabButton
-        activeTab={activeTab}
-        totalTabLength={TABS.length}
-        onClick={handleClick}
-      />
+    <div className={styles.formContainer}>
+      <h1 className={styles.formTitle}>Tab Based Form</h1>
+      <div className={styles.tabsContainer}>
+        <Tabs tabs={TABS} activeTab={activeTab} />
+      </div>
+      <div className={styles.componentContainer}>
+        <Component
+          data={TabsData[TABS[activeTab]].data}
+          changeFunction={TabsData[TABS[activeTab]].setData}
+        />
+      </div>
+      <div className={styles.buttonContainer}>
+        <TabButton
+          activeTab={activeTab}
+          totalTabLength={TABS.length}
+          onClick={handleClick}
+        />
+      </div>
     </div>
   );
 }
