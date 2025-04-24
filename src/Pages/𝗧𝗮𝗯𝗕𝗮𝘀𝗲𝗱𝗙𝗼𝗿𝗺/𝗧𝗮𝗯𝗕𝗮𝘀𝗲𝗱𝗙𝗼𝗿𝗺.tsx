@@ -24,6 +24,7 @@ export default function TabBasedForm() {
   const [publicData, setPublic] = useState(PageData.Public);
   const [interestData, setInterestData] = useState(PageData.Interest);
   const [settingData, setSettingData] = useState(PageData.Settings);
+  const [userInformation, setUserInformation] = useState({});
 
   const Component = Pages[activeTab];
 
@@ -32,14 +33,17 @@ export default function TabBasedForm() {
     () => ({
       Next: () => setActiveTab((prev) => prev + 1),
       Prev: () => setActiveTab((prev) => prev - 1),
-      Submit: () => setActiveTab(0),
+      Submit: () => {
+        setActiveTab(0);
+        setUserInformation({ publicData, interestData, settingData });
+      },
     }),
-    []
+    [interestData, publicData, settingData]
   );
 
   const handleClick = useCallback(
     (event: MouseEvent<HTMLButtonElement>) => {
-      const button = BUTTONS[(event.target as HTMLInputElement).value];
+      const button = BUTTONS[(event.target as HTMLButtonElement).value];
       if (button) {
         button();
       }
@@ -50,7 +54,7 @@ export default function TabBasedForm() {
   console.log("Public Data", publicData);
   console.log("Interest Data", interestData);
   console.log("Setting Data", settingData);
-
+  console.log("User Information", userInformation);
   return (
     <div>
       <h1>Tab Based Form</h1>
