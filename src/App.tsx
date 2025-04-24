@@ -26,7 +26,7 @@ const HigherOrderDashBoard = lazy(()=>import('./Pages/HigherOrderComponent/MainO
 const GridLight  = lazy(()=>import('./Pages/GridLight/GridLight'))
 const SwapComponent = lazy(()=>import('./Pages/SwapCheckedItem/SwapItemComponent'))
 const MultiSelectChip = lazy(()=>import('./Pages/MultiSelectedInput/MultiSelectInput'))
-const TabBasedForm = lazy(()=>import('./Pages/𝗧𝗮𝗯𝗕𝗮𝘀𝗲𝗱𝗙𝗼𝗿𝗺/𝗧𝗮𝗯𝗕𝗮𝘀𝗲𝗱𝗙𝗼𝗿𝗺'))
+const TabBasedForm = lazy(()=>import('./Pages/TabBasedForm/TabBasedForm'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
