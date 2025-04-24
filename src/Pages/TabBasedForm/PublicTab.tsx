@@ -17,7 +17,7 @@ interface PublicProps {
 const Public = ({ data, changeFunction }: PublicProps) => {
   return (
     <div className={styles.form_container}>
-      {data.map((item, index) => {
+      {data.map((item) => {
         return (
           <div key={item.id} className={styles.form_group}>
             <label className={styles.form_label}>
@@ -30,7 +30,7 @@ const Public = ({ data, changeFunction }: PublicProps) => {
                 name={item.name}
                 placeholder={item.placeholder}
                 value={item.value}
-                onChange={(event) => changeFunction(index, event)}
+                onChange={(event) => changeFunction(item.id, event)}
               />
             </label>
           </div>

@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useMemo, useState } from "react";
+import { ChangeEvent, MouseEvent, useCallback, useMemo, useState } from "react";
 import { PageData } from "./Config";
 import Interest from "./InterestTab";
 import Public from "./PublicTab";
@@ -31,14 +31,12 @@ interface InterestSettingData {
   id: number;
   name: string;
   checked: boolean;
-  type:string;
+  type: string;
 }
 interface TabsData {
   [index: string]: {
     data: PublicData[] | InterestSettingData[];
-    setData:
-      | React.Dispatch<React.SetStateAction<PublicData[]>>
-      | React.Dispatch<React.SetStateAction<InterestSettingData[]>>;
+    setData: (id: number, event: React.ChangeEvent<HTMLInputElement>) => void;
   };
 }
 
@@ -54,33 +52,44 @@ export default function TabBasedForm() {
   const TabsData: TabsData = {
     Public: {
       data: publicData,
-      setData: setPublic,
+      setData: (id:number, event:ChangeEvent<HTMLInputElement>) => {
+        setPublic((prevData)=>{
+          return prevData?.map((item)=>{
+            return item.id === id ? {...item, value: event.target.value} : item
+          })
+        })
+      },
     },
     Interest: {
       data: interestData,
-      setData: setInterestData,
+      setData: (id:number, event:ChangeEvent<HTMLInputElement>) => {
+        console.log("Interest", id, event.target.value);
+      },
     },
     Setting: {
       data: settingData,
-      setData: setSettingData,
+      setData: (id:number, event:ChangeEvent<HTMLInputElement>) => {
+        console.log("setting Data", id, event.target.value);
+      },
     },
   };
 
   //  Button Component
-  const BUTTONS: Button = useMemo(
-    () => ({
+  const BUTTONS: Button = useMemo(() => ({
       Next: () => setActiveTab((prev) => prev + 1),
       Prev: () => setActiveTab((prev) => prev - 1),
       Submit: () => {
         setActiveTab(0);
         setUserInformation({ publicData, interestData, settingData });
+        setPublic(PageData.Public);
+        setInterestData(PageData.Interest);
+        setSettingData(PageData.Settings);
       },
     }),
     [interestData, publicData, settingData]
   );
 
-  const handleClick = useCallback(
-    (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
       const button = BUTTONS[(event.target as HTMLButtonElement).value];
       if (button) {
         button();
@@ -89,10 +98,7 @@ export default function TabBasedForm() {
     [BUTTONS]
   );
 
-  // console.log("Public Data", publicData);
-  // console.log("Interest Data", interestData);
-  // console.log("Setting Data", settingData);
-  // console.log("User Information", TabsData[TABS[activeTab]]);
+
   return (
     <div className={styles.formContainer}>
       <h1 className={styles.formTitle}>Tab Based Form</h1>
