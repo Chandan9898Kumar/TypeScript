@@ -272,3 +272,133 @@
 .checkbox_text {
   margin-left: 0.5rem;
 }
+
+/*  Submitted Data */
+
+.submitted-data {
+  /* Layout */
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 1.5rem;
+
+  /* Visual styling */
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Animation for entry */
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.submitted-data > div {
+  /* Layout */
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+
+  /* Visual styling */
+  background-color: white;
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+
+  /* Typography */
+  font-size: 0.95rem;
+  color: #2c3e50;
+
+  /* Animation for each item */
+  animation: fadeIn 0.3s ease-in-out;
+
+  /* Hover effects */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submitted-data > div:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.submitted-data > div:last-child {
+  margin-bottom: 0;
+}
+
+/* Empty state styling */
+.submitted-data:empty {
+  display: none;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .submitted-data {
+    margin: 15px;
+    padding: 1rem;
+  }
+
+  .submitted-data > div {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .submitted-data {
+    border: 2px solid #000;
+  }
+
+  .submitted-data > div {
+    border: 1px solid #000;
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .submitted-data,
+  .submitted-data > div {
+    animation: none;
+    transform: none;
+  }
+
+  .submitted-data > div:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .submitted-data {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .submitted-data > div {
+    break-inside: avoid;
+    border: none;
+    border-bottom: 1px solid #000;
+  }
+}
