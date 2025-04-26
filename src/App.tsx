@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { lazy, Suspense, useState } from "react";
 import "./App.css";
-
 import Loader from "./Components/Loader/Loader";
+
 const Carousel = lazy(() => import("./Pages/Carousel/Carousel"));
 const Header = lazy(() => import("./Components/Header/Header"));
 const TrafficLight = lazy(() => import("./Pages/TrafficLight/TrafficLight"));
