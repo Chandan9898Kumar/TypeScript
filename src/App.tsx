@@ -28,6 +28,7 @@ const SwapComponent = lazy(()=>import('./Pages/SwapCheckedItem/SwapItemComponent
 const MultiSelectChip = lazy(()=>import('./Pages/MultiSelectedInput/MultiSelectInput'))
 const TabBasedForm = lazy(()=>import('./Pages/TabBasedForm/TabBasedForm'))
 const SpinBottle = lazy(()=>import('./Pages/SpinBottle/SpinBottle'))
+const Multiplicand = lazy(()=> import('./Pages/Multiplicand/Multiplicand'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -52,6 +53,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <Multiplicand />
         <SpinBottle />
         <TabBasedForm />
         <MultiSelectChip />
