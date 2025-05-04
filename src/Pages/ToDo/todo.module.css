@@ -1,0 +1,97 @@
+:root {
+  --primary-color: blueviolet;
+  --border-color: gainsboro;
+  --accent-color: greenyellow;
+  --bg-color: aliceblue;
+  --border-radius: 10px;
+  --element-height: 35px;
+  --font-size: 18px;
+  --spacing-sm: 5px;
+  --spacing-md: 10px;
+  --spacing-lg: 20px;
+}
+
+/* Apply box-sizing to all elements for consistent sizing */
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+/* Flex container styles */
+.event,
+.add_edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.event {
+  gap: var(--spacing-lg);
+}
+
+.add_edit {
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.input_field {
+  padding: var(--spacing-md);
+}
+
+/* Form element styles */
+.input,
+.btn button {
+  height: var(--element-height);
+  font-size: var(--font-size);
+  border-radius: var(--border-radius);
+  border: 2px solid var(--border-color);
+}
+
+.input {
+  padding: var(--spacing-sm);
+  outline: none;
+  will-change: border-color;
+}
+
+.input:focus {
+  border-color: var(--accent-color);
+}
+
+.btn button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+}
+
+/* List container */
+.display {
+  background-color: var(--bg-color);
+  height: 200px;
+  overflow: hidden auto;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-md) var(--spacing-lg);
+  content-visibility: auto;
+  contain-intrinsic-size: 0 200px;
+  will-change: transform;
+}
+
+/* List items */
+.ulList > .ulLi {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  font-size: var(--font-size);
+  text-transform: uppercase;
+  list-style-type: none;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 50px;
+  will-change: transform;
+}
