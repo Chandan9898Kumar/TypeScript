@@ -32,7 +32,7 @@ const Multiplicand = lazy(()=> import('./Pages/Multiplicand/Multiplicand'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
-    <>
+    <div className='app'>
       <Suspense fallback={<Loader />}>
         <header>
           <motion.div
@@ -53,9 +53,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
-        <Multiplicand />
-        <SpinBottle />
-        <TabBasedForm />
+       
         <MultiSelectChip />
         <SwapComponent />
         <GridLight />
@@ -77,9 +75,12 @@ const App: React.FC = () => {
         <AutoSuggestion />
         <ScrollOnElement scrollData={scrollData}  setScrollData={setScrollData}/>
         <InfiniteScroller />
+        <Multiplicand />
+        <SpinBottle />
+        <TabBasedForm />
        
       </Suspense>
-    </>
+    </div>
   );
 };
 
