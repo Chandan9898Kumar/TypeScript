@@ -79,7 +79,6 @@ const App: React.FC = () => {
         <Multiplicand />
         <SpinBottle />
         <TabBasedForm />
-       
       </Suspense>
     </div>
   );
