@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./graph.module.css";
 
 interface ChartData {
@@ -17,6 +18,9 @@ const CHART_DATA: ChartData[] = [
   { id: "dep-7", name: "Events", ticketCount: 43, colour: "#E1CC4F" },
 ];
 
+// Calculate max ticket count once
+const MAX_TICKET_COUNT = Math.max(...CHART_DATA.map(item => item.ticketCount));
+
 export default function Graph() {
   return (
     <div>
@@ -30,7 +34,7 @@ interface ChartBarProps {
   data: ChartData[];
 }
 
-const ChartBar = ({ data }: ChartBarProps) => {
+const ChartBar = memo(({ data }: ChartBarProps) => {
   return (
     <>
       <div className={styles.main}>
@@ -51,19 +55,18 @@ const ChartBar = ({ data }: ChartBarProps) => {
       <div className={styles.dep}>Departments</div>
     </>
   );
-};
+});
 
 interface BarsProps {
   count: number;
   colour: string;
 }
-const Bars = ({ count, colour }: BarsProps) => {
+const Bars = memo(({ count, colour }: BarsProps) => {
   const style = {
     backgroundColor: colour,
-    "--to-height": `${(150 / 60) * count}px`,
+    "--to-height": `${(150 / MAX_TICKET_COUNT) * count}px`,
     "--from-height": "0px",
-    "--my-color": "plum",
-  };
+  } as React.CSSProperties;
 
   return <div className={styles.bars} style={style}></div>;
-};
+});
