@@ -1,0 +1,51 @@
+.main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: aliceblue;
+  box-sizing: border-box;
+}
+
+.yAxis {
+  transform: rotate(90deg);
+  height: 100%;
+  background-color: rgb(64, 151, 227);
+}
+
+.dep {
+  align-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.chart {
+  height: 300px;
+  margin: 10px;
+  border-bottom: 2px solid gainsboro;
+  border-left: 2px solid gainsboro;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-content: flex-end;
+}
+
+.bars {
+  background-color: gray;
+  border-radius: 5px;
+  width: 50px;
+  text-align: center;
+  align-content: flex-end;
+  margin: 0px 10px;
+  animation: chartoggle 2s ease-in forwards;
+  position: relative;
+}
+
+@keyframes chartoggle {
+  from {
+    height: var(--from-height);
+  }
+
+  to {
+    height: var(--to-height);
+  }
+}
