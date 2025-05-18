@@ -61,11 +61,30 @@ interface BarsProps {
   count: number;
   colour: string;
 }
+// const Bars = memo(({ count, colour }: BarsProps) => {
+  // Pre-calculate the height once
+//   const barHeight = `${(150 / MAX_TICKET_COUNT) * count}px`;
+  
+//   const style = {
+//     backgroundColor: colour,
+//     "--to-height": barHeight,
+//     "--from-height": "0px",
+//     height: `${barHeight}px`, // Set explicit height to avoid layout calculation during animation
+//     transform: "translateZ(0)", // Force GPU acceleration
+//   } as React.CSSProperties;
+
+//   return <div className={styles.bars} style={style}></div>;
+// });
+
+
+
 const Bars = memo(({ count, colour }: BarsProps) => {
+  // Calculate scale factor
+  const scaleY = count / MAX_TICKET_COUNT;
   const style = {
     backgroundColor: colour,
-    "--to-height": `${(150 / MAX_TICKET_COUNT) * count}px`,
-    "--from-height": "0px",
+    "--scale-y": scaleY,
+    transformOrigin: 'bottom',
   } as React.CSSProperties;
 
   return <div className={styles.bars} style={style}></div>;
