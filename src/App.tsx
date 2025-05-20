@@ -31,6 +31,7 @@ const SpinBottle = lazy(()=>import('./Pages/SpinBottle/SpinBottle'))
 const Multiplicand = lazy(()=> import('./Pages/Multiplicand/Multiplicand'))
 const TodoApp = lazy(()=>import('./Pages/ToDo/ToDo'))
 const Graph = lazy(()=>import('./Pages/Graph/Graph'))
+const PollWidget = lazy(()=>import('./Pages/PollWidget/PollWidget'))
 const App: React.FC = () => {
   const [scrollData, setScrollData] = useState<number>(50);
   return (
@@ -55,7 +56,8 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
-         <Graph />
+        <Graph />
+        <PollWidget />
         <TodoApp />
         <MultiSelectChip />
         <SwapComponent />
