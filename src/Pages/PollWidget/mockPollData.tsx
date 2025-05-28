@@ -20,10 +20,10 @@ export const mockPolls: PollData[] = [
       { id: 1, text: "JavaScript", votes: 150 },
       { id: 2, text: "TypeScript", votes: 230 },
       { id: 3, text: "Python", votes: 120 },
-      { id: 4, text: "Java", votes: 90 }
+      { id: 4, text: "Java", votes: 90 },
     ],
     totalVotes: 590,
-    isActive: true
+    isActive: true,
   },
   {
     id: 2,
@@ -32,10 +32,10 @@ export const mockPolls: PollData[] = [
       { id: 1, text: "React", votes: 320 },
       { id: 2, text: "Vue", votes: 110 },
       { id: 3, text: "Angular", votes: 95 },
-      { id: 4, text: "Svelte", votes: 75 }
+      { id: 4, text: "Svelte", votes: 75 },
     ],
     totalVotes: 600,
-    isActive: true
+    isActive: true,
   },
   {
     id: 3,
@@ -44,10 +44,9 @@ export const mockPolls: PollData[] = [
       { id: 1, text: "Daily", votes: 85 },
       { id: 2, text: "Weekly", votes: 210 },
       { id: 3, text: "Monthly", votes: 140 },
-      { id: 4, text: "Rarely", votes: 65 }
+      { id: 4, text: "Rarely", votes: 65 },
     ],
     totalVotes: 500,
-    isActive: false
-  }
+    isActive: false,
+  },
 ];
-
