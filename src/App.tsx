@@ -34,7 +34,9 @@ const Graph = lazy(()=>import('./Pages/Graph/Graph'))
 const PollWidget = lazy(()=>import('./Pages/PollWidget/PollWidget'))
 
 const App: React.FC = () => {
+
   const [scrollData, setScrollData] = useState<number>(50);
+
   return (
     <div className='app'>
       <Suspense fallback={<Loader />}>
