@@ -1,3 +1,5 @@
+import {mockPolls} from './mockPollData'
+
 const PollWidget = () => {
   return (
     <div>
