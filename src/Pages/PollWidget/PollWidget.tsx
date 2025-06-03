@@ -1,4 +1,4 @@
-import {mockPolls} from './mockPollData'
+import { mockPolls } from './mockPollData';
 
 const PollWidget = () => {
   return (
