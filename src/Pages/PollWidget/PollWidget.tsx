@@ -3,7 +3,7 @@ import { mockPolls } from './mockPollData';
 const PollWidget = () => {
   return (
     <div>
-      <h1 style={{color:'gray'}}>Poll Widget</h1>
+      <h1 style={{color:'plum'}}>Poll Widget</h1>
       <Polling />
     </div>
   );
