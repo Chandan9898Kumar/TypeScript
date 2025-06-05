@@ -31,7 +31,7 @@ const SpinBottle = lazy(()=>import('./Pages/SpinBottle/SpinBottle'))
 const Multiplicand = lazy(()=> import('./Pages/Multiplicand/Multiplicand'))
 const TodoApp = lazy(()=>import('./Pages/ToDo/ToDo'))
 const Graph = lazy(()=>import('./Pages/Graph/Graph'))
-const PollWidget = lazy(()=>import('./Pages/PollWidget/PollWidget'))
+const PollWidget = lazy(()=>import('./Pages/PollWidget/Widget'))
 
 const App: React.FC = () => {
 
@@ -60,8 +60,9 @@ const App: React.FC = () => {
           </motion.div>
         </header>{" "}
         <Graph />
-        <PollWidget />
+        
         <TodoApp />
+        <PollWidget />
         <MultiSelectChip />
         <SwapComponent />
         <GridLight />
