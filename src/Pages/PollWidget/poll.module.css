@@ -1,0 +1,48 @@
+.h1Tag {
+  text-align: center;
+  color: blueviolet;
+  border: 1px solid gainsboro;
+  text-shadow: 5px 10px 50px;
+}
+
+.h3Tag {
+  text-align: center;
+  color: rgb(156, 152, 159);
+  border: 1px solid gainsboro;
+  text-shadow: 5px 10px 50px;
+  font-weight: 800;
+}
+
+.main {
+  height: 350px;
+  overflow: auto;
+}
+
+.container {
+  background-color: rgb(222, 226, 231);
+  padding: 5px 20px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.poll {
+  background-color: rgba(81, 135, 137, 1);
+  padding: 15px;
+  margin: 10px;
+  border-radius: inherit;
+  font-size: 20px;
+  transition: all 0.5s linear;
+  &:hover {
+    background-color: green;
+    cursor: pointer;
+  }
+}
+
+.text {
+  color: rgb(172, 192, 231);
+}
+
+.labelTag {
+  color: rgb(156, 152, 159);
+  cursor: pointer;
+}
