@@ -24,7 +24,14 @@ const PollResult = ({ pollingResults, totalPollingVotes }: PollResultProps) => {
     <div className={styles.main}>
       <h1>The Polling Result</h1>
       {resultsWithPercentage?.map(({ id, text, votes, percentage }) => (
-        <div className={styles.resultMain} key={id}>
+        <div 
+          className={styles.resultMain} 
+          key={id}
+          style={{ 
+            contentVisibility: 'auto',
+            containIntrinsicSize: '0 150px' 
+          }}
+        >
           <div className={styles.resultItems}>
             <div>Item : {text}</div>
             <div>Total Votes : {votes}</div>
