@@ -1,4 +1,5 @@
 import { memo } from "react";
+import styles from "./button.module.css";
 
 type buttonType = "button" | "submit" | "reset";
 
@@ -13,10 +14,9 @@ const ButtonWidget = ({
   buttonType = "button",
   label,
 }: ButtonWidgetProps) => {
-
   return (
-    <div>
-      <button type={buttonType} onClick={onClick}>
+    <div className={styles.buttonContainer}>
+      <button className={styles.button} type={buttonType} onClick={onClick}>
         {label}
       </button>
     </div>
