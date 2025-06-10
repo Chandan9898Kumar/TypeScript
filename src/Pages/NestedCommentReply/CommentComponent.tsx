@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Comment from "./Comment";
+
 const CommentSection = () => {
   const [comments, setComments] = useState([
     {
@@ -45,6 +46,7 @@ const CommentSection = () => {
   return (
     <>
       <div>Comment</div>
+      <Comment />
     </>
   );
 };
