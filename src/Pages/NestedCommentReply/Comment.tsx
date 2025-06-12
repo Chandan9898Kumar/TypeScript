@@ -1,15 +1,31 @@
-import ModifyComments from './ModifyComments'
+import ModifyComments from "./ModifyComments";
+import styles from "./comment.module.css";
+import { CommentData } from "./Utils";
+import AddComment from "./AddComments";
+interface CommentProps {
+  comment: CommentData;
+  onReply: (id: number) => void;
+  onDelete: (id: number) => void;
+  handleReply: (elements: CommentData) => void;
+  replyId: number | null;
+}
 
-const Comment = ({ comment, onReply, onDelete, handleReply, replyId }) => {
+const Comment = ({
+  comment,
+  onReply,
+  onDelete,
+  handleReply,
+  replyId,
+}: CommentProps) => {
   const isReplyactive = replyId === comment.id;
 
   return (
     <div>
-      <div className="main">
-        <div className="head">
+      <div className={styles.main}>
+        <div className={styles.head}>
           <h3>
             {comment.author}
-            {'  '} {' : '}
+            {"  "} {" : "}
             {comment?.date}
           </h3>
           <ModifyComments
@@ -18,12 +34,13 @@ const Comment = ({ comment, onReply, onDelete, handleReply, replyId }) => {
             onDelete={onDelete}
           />
         </div>
-        <div className="text">{comment.text}</div>
+        <div className={styles.text}>{comment.text}</div>
       </div>
 
       {isReplyactive && (
         <AddComment
           setCommentList={handleReply}
+          name="replyComment"
           label="Reply Now"
           placeholder="Reply To This Message"
         />
@@ -32,8 +49,8 @@ const Comment = ({ comment, onReply, onDelete, handleReply, replyId }) => {
       {!!comment.replies.length &&
         comment.replies.map((item) => {
           return (
-            <div key={item.id} style={{ padding: '0px 20px' }}>
-              {' '}
+            <div key={item.id} className={styles.replyContainer}>
+              {" "}
               <Comment
                 comment={item}
                 onReply={onReply}

@@ -42,3 +42,40 @@
 .delete {
   color: brown;
 }
+
+/* Add Comments */
+
+.addComment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.input {
+  border-radius: 10px;
+}
+
+.button {
+  padding: 8px;
+  height: 36px;
+  cursor: pointer;
+  color: tomato;
+  border: none;
+  border-radius: 10px;
+}
+
+.button:disabled {
+  padding: 5px;
+  height: 36px;
+  cursor: not-allowed;
+}
+
+
+.replyContainer {
+  padding: 0px 20px;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 150px;
+}

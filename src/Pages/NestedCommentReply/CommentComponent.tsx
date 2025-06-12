@@ -1,17 +1,16 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Comment from "./Comment";
 import AddComment from "./AddComments";
-
+import { CommentData } from "./Utils";
 import { deleteCommentById, handleReplyById } from "./Utils";
 
 const CommentSection = () => {
-  const [comments, setComments] = useState([
+  const [comments, setComments] = useState<CommentData[]>([
     {
       id: 1,
       author: "Jane Doe",
       date: "2023-05-15",
       text: "This is a great article!",
-      parentId: null,
       replies: [
         {
           id: 2,
@@ -47,29 +46,36 @@ const CommentSection = () => {
     },
   ]);
 
-  const [replyId, setReplyId] = useState(null);
+  const [replyId, setReplyId] = useState<number | null>(null);
 
-  const handelSetComments = (commentList) => {
+  const handelSetComments = useCallback((commentList: CommentData) => {
     setComments((prevList) => [...prevList, commentList]);
-  };
+  }, []);
 
-  const handleDeleteComment = (commentId) => {
+  const handleDeleteComment = (commentId: number) => {
     setComments((prevComment) => deleteCommentById(prevComment, commentId));
   };
 
-  const handleSetReplyId = (id) => {
+  const handleSetReplyId = (id: number) => {
     setReplyId(id);
   };
 
-  const handleReply = (replyItems) => {
+  const handleReply = (replyItems: CommentData) => {
     setComments((prevComments) =>
       handleReplyById(prevComments, replyId, replyItems)
     );
     setReplyId(null);
   };
+
   return (
     <>
-      <AddComment />
+      <h1>Nested Reply And Comment Section</h1>
+      <AddComment
+        name="addComment"
+        setCommentList={handelSetComments}
+        label="ADD COMMENT"
+        placeholder="Enter your comment here"
+      />
 
       {comments?.map((comment) => {
         return (

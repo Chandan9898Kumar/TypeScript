@@ -42,3 +42,11 @@ export const deleteCommentById = (comments, commentId) => {
     return true;
   });
 };
+
+export interface CommentData {
+  id: number;
+  author: string;
+  date: string;
+  text: string;
+  replies: CommentData[]; // Add this line to allow nested replies
+}

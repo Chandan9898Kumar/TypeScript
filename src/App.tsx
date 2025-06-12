@@ -32,6 +32,7 @@ const Multiplicand = lazy(()=> import('./Pages/Multiplicand/Multiplicand'))
 const TodoApp = lazy(()=>import('./Pages/ToDo/ToDo'))
 const Graph = lazy(()=>import('./Pages/Graph/Graph'))
 const PollWidget = lazy(()=>import('./Pages/PollWidget/Widget'))
+const CommentSection = lazy(()=>import('./Pages/NestedCommentReply/CommentComponent'))
 
 const App: React.FC = () => {
 
@@ -59,11 +60,10 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        <CommentSection />
+        <MultiSelectChip />
         <Graph />
         
-        <TodoApp />
-        <PollWidget />
-        <MultiSelectChip />
         <SwapComponent />
         <GridLight />
         <HigherOrderDashBoard />
@@ -87,6 +87,9 @@ const App: React.FC = () => {
         <Multiplicand />
         <SpinBottle />
         <TabBasedForm />
+         <TodoApp />
+        <PollWidget />
+        
       </Suspense>
     </div>
   );

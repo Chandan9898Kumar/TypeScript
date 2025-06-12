@@ -1,14 +1,23 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, memo } from "react";
 import { getDate, getUniqueId } from "./Utils";
+import { CommentData } from "./Utils";
+import styles from "./comment.module.css";
+interface AddCommentProps {
+  setCommentList: (commentItems: CommentData) => void;
+  label?: string;
+  placeholder?: string;
+  name: string;
+}
 
 const AddComment = ({
   setCommentList,
   label = "ADD COMMENT",
   placeholder = "Enter your comment here",
-}) => {
+  name,
+}: AddCommentProps) => {
   const [commentText, setCommentText] = useState("");
 
-  const handleCommentChange = (event:ChangeEvent<HTMLInputElement>) => {
+  const handleCommentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCommentText(event.target.value);
   };
 
@@ -28,8 +37,10 @@ const AddComment = ({
   };
 
   return (
-    <div>
+    <div className={styles.addComment}>
       <input
+        className={styles.input}
+        name={name}
         type="text"
         placeholder={placeholder}
         onChange={handleCommentChange}
@@ -39,8 +50,8 @@ const AddComment = ({
       <button
         disabled={!commentText.trim().length}
         type="button"
+        className={styles.button}
         onClick={handleAddComment}
-        className=""
       >
         {label}
       </button>
@@ -48,4 +59,4 @@ const AddComment = ({
   );
 };
 
-export default AddComment;
+export default memo(AddComment);

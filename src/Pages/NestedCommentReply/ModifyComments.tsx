@@ -1,8 +1,16 @@
-const ModifyComments = ({ id, onReply, onDelete }) => {
+import styles from "./comment.module.css";
+
+interface ModifyCommentsProps {
+  id: number;
+  onReply: (id: number) => void;
+  onDelete: (id: number) => void;
+}
+
+const ModifyComments = ({ id, onReply, onDelete }: ModifyCommentsProps) => {
   return (
-    <div className="btns">
+    <div className={styles.btns}>
       <button
-        className="reply"
+        className={styles.reply}
         onClick={() => {
           onReply(id);
         }}
@@ -10,7 +18,7 @@ const ModifyComments = ({ id, onReply, onDelete }) => {
         Reply
       </button>
       <button
-        className="delete"
+        className={styles.delete}
         onClick={() => {
           onDelete(id);
         }}
