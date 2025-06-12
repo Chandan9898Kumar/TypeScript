@@ -48,7 +48,7 @@ const CommentSection = () => {
 
   const [replyId, setReplyId] = useState<number | null>(null);
 
-  const handelSetComments = useCallback((commentList: CommentData) => {
+  const handleSetComments = useCallback((commentList: CommentData) => {
     setComments((prevList) => [...prevList, commentList]);
   }, []);
 
@@ -72,7 +72,7 @@ const CommentSection = () => {
       <h1>Nested Reply And Comment Section</h1>
       <AddComment
         name="addComment"
-        setCommentList={handelSetComments}
+        setCommentList={handleSetComments}
         label="ADD COMMENT"
         placeholder="Enter your comment here"
       />
