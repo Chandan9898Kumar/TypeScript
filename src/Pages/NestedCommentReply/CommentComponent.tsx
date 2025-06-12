@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Comment from "./Comment";
+import AddComment from "./AddComments";
+
+import { deleteCommentById, handleReplyById } from "./Utils";
 
 const CommentSection = () => {
   const [comments, setComments] = useState([
@@ -43,11 +46,43 @@ const CommentSection = () => {
       ],
     },
   ]);
+
+  const [replyId, setReplyId] = useState(null);
+
+  const handelSetComments = (commentList) => {
+    setComments((prevList) => [...prevList, commentList]);
+  };
+
+  const handleDeleteComment = (commentId) => {
+    setComments((prevComment) => deleteCommentById(prevComment, commentId));
+  };
+
+  const handleSetReplyId = (id) => {
+    setReplyId(id);
+  };
+
+  const handleReply = (replyItems) => {
+    setComments((prevComments) =>
+      handleReplyById(prevComments, replyId, replyItems)
+    );
+    setReplyId(null);
+  };
   return (
     <>
-      <div>Comment</div>
-      
-      <Comment />
+      <AddComment />
+
+      {comments?.map((comment) => {
+        return (
+          <Comment
+            key={comment?.id}
+            comment={comment}
+            onReply={handleSetReplyId}
+            onDelete={handleDeleteComment}
+            handleReply={handleReply}
+            replyId={replyId}
+          />
+        );
+      })}
     </>
   );
 };
