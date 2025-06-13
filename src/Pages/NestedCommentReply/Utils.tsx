@@ -1,3 +1,11 @@
+export interface CommentData {
+  id: number;
+  author: string;
+  date: string;
+  text: string;
+  replies: CommentData[]; // Add this line to allow nested replies
+}
+
 export const getUniqueId = () => {
   return new Date().getTime();
 };
@@ -17,19 +25,27 @@ export const getDate = () => {
   return formattedDate;
 };
 
-export const handleReplyById = (comments, repliedId, replyItems) => {
+export const handleReplyById = (
+  comments: CommentData[],
+  repliedId: number | null,
+  replyItems: CommentData
+): CommentData[] => {
   return comments.map((item) => {
     if (item.id === repliedId) {
       item.replies.push(replyItems);
-    } else {
-      handleReplyById(item.replies, repliedId, replyItems);
+    }
+    if (item.replies && item.replies.length) {
+      item.replies = handleReplyById(item.replies, repliedId, replyItems);
     }
 
     return item;
   });
 };
 
-export const deleteCommentById = (comments, commentId) => {
+export const deleteCommentById = (
+  comments: CommentData[],
+  commentId: number | null
+) => {
   return comments.filter((comment) => {
     if (comment.id === commentId) {
       return false;
@@ -42,11 +58,3 @@ export const deleteCommentById = (comments, commentId) => {
     return true;
   });
 };
-
-export interface CommentData {
-  id: number;
-  author: string;
-  date: string;
-  text: string;
-  replies: CommentData[]; // Add this line to allow nested replies
-}
