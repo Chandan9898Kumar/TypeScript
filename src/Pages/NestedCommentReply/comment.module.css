@@ -73,9 +73,23 @@
   cursor: not-allowed;
 }
 
-
 .replyContainer {
   padding: 0px 20px;
   content-visibility: auto;
   contain-intrinsic-size: 0 150px;
+}
+
+.expand {
+  text-align: right;
+  height: 40px;
+  align-content: center;
+}
+.expandButton {
+  cursor: pointer;
+  background-color: cornflowerblue;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 8px;
 }

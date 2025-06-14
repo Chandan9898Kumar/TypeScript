@@ -1,7 +1,8 @@
-import ModifyComments from "./ModifyComments";
-import styles from "./comment.module.css";
-import { CommentData } from "./Utils";
+import { useState } from "react";
 import AddComment from "./AddComments";
+import styles from "./comment.module.css";
+import ModifyComments from "./ModifyComments";
+import { CommentData } from "./Utils";
 interface CommentProps {
   comment: CommentData;
   onReply: (id: number) => void;
@@ -17,6 +18,7 @@ const Comment = ({
   handleReply,
   replyId,
 }: CommentProps) => {
+  const [expand, setExapnd] = useState<boolean>(false);
   const isReplyactive = replyId === comment.id;
 
   return (
@@ -35,6 +37,13 @@ const Comment = ({
           />
         </div>
         <div className={styles.text}>{comment.text}</div>
+        <div className={styles.expand}>
+          {!!comment.replies.length && (
+            <button className={styles.expandButton} onClick={() => setExapnd(!expand)}>
+              {expand ? "collapse" : " Expand"}
+            </button>
+          )}
+        </div>
       </div>
 
       {isReplyactive && (
@@ -45,22 +54,22 @@ const Comment = ({
           placeholder="Reply To This Message"
         />
       )}
-
-      {!!comment.replies.length &&
-        comment.replies.map((item) => {
-          return (
-            <div key={item.id} className={styles.replyContainer}>
-              {" "}
+      <div className={styles.replyContainer}>
+        {!!comment.replies.length &&
+          expand &&
+          comment.replies.map((item) => {
+            return (
               <Comment
+                key={item.id}
                 comment={item}
                 onReply={onReply}
                 onDelete={onDelete}
                 replyId={replyId}
                 handleReply={handleReply}
               />
-            </div>
-          );
-        })}
+            );
+          })}
+      </div>
     </div>
   );
 };
