@@ -5,6 +5,7 @@ import { CommentData } from "./Utils";
 import { deleteCommentById, handleReplyById } from "./Utils";
 
 const CommentSection = () => {
+  
   const [comments, setComments] = useState<CommentData[]>([
     {
       id: 1,
