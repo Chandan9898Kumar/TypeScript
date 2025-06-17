@@ -1,0 +1,21 @@
+.fileButton {
+  padding: 10px;
+  margin: 5px;
+}
+
+.btn[data-folder='false'] {
+  cursor: default;
+}
+
+.fileButton > button {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.files {
+  position: relative;
+  left: 20px;
+}

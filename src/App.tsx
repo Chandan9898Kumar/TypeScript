@@ -33,6 +33,7 @@ const TodoApp = lazy(()=>import('./Pages/ToDo/ToDo'))
 const Graph = lazy(()=>import('./Pages/Graph/Graph'))
 const PollWidget = lazy(()=>import('./Pages/PollWidget/Widget'))
 const CommentSection = lazy(()=>import('./Pages/NestedCommentReply/CommentComponent'))
+const FileExplorer = lazy(()=>import('./Pages/FileExplorer/FileExplorer'))
 
 const App: React.FC = () => {
 
@@ -60,10 +61,11 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
+        
         <CommentSection />
+        <FileExplorer />
         <MultiSelectChip />
         <Graph />
-        
         <SwapComponent />
         <GridLight />
         <HigherOrderDashBoard />
