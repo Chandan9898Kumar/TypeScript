@@ -1,0 +1,70 @@
+.fileButton {
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn[data-folder='false'] {
+  cursor: default;
+}
+
+.fileButton > button {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.files {
+  position: relative;
+  left: 20px;
+}
+
+.fileFolderButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.fileFolderButton > button {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: cadetblue;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.inputFiled {
+  position: relative;
+  left: 30px;
+  padding: 10px;
+}
+
+.inputFiled > button {
+  cursor: pointer;
+}
+.inputFiled > input {
+  font-size: 20px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  outline: none;
+  transition: all 0.6s linear;
+}
+
+.inputFiled > input:focus {
+  border: 2px solid slateblue;
+  outline: none;
+}
+
+.message {
+  color: red;
+  font-size: 20px;
+}

@@ -34,7 +34,7 @@ const Graph = lazy(()=>import('./Pages/Graph/Graph'))
 const PollWidget = lazy(()=>import('./Pages/PollWidget/Widget'))
 const CommentSection = lazy(()=>import('./Pages/NestedCommentReply/CommentComponent'))
 const FileExplorer = lazy(()=>import('./Pages/FileExplorer/FileExplorer'))
-
+const CrudFileExplorer  = lazy(()=>import('./Pages/CrudFileExplorer/CrudFileExplorer'))
 const App: React.FC = () => {
 
   const [scrollData, setScrollData] = useState<number>(50);
@@ -64,6 +64,7 @@ const App: React.FC = () => {
         
         <CommentSection />
         <FileExplorer />
+        <CrudFileExplorer />
         <MultiSelectChip />
         <Graph />
         <SwapComponent />
