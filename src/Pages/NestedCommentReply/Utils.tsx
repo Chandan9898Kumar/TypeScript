@@ -6,7 +6,7 @@ export interface CommentData {
   replies: CommentData[]; // Add this line to allow nested replies
 }
 
-export const getUniqueId = () => {
+export const getUniqueId = ():number => {
   return new Date().getTime();
 };
 
