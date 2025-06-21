@@ -11,7 +11,7 @@ export const getUniqueId = ():number => {
 };
 
 export const getDate = () => {
-  
+
   const now = new Date();
 
   const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1)
@@ -32,6 +32,7 @@ export const handleReplyById = (
   repliedId: number | null,
   replyItems: CommentData
 ): CommentData[] => {
+  
   return comments.map((item) => {
     if (item.id === repliedId) {
       item.replies.push(replyItems);
