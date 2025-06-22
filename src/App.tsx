@@ -1,41 +1,40 @@
 import { motion } from "framer-motion";
-import { lazy, Suspense, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import Loader from "./Components/Loader/Loader";
 
-const Carousel = lazy(() => import("./Pages/Carousel/Carousel"));
-const Header = lazy(() => import("./Components/Header/Header"));
-const TrafficLight = lazy(() => import("./Pages/TrafficLight/TrafficLight"));
-const PausableCounter = lazy(() => import("./Pages/PausableCounter/PausableCounter"));
-const AccordionContainer = lazy(() => import("./Pages/Accordion/Accordion"));
-const StartRating = lazy(() => import("./Pages/StartRating/StarRating"));
-const Toggle = lazy(() => import("./Components/Toggle/Toggle"));
-const MessageComponent = lazy(() => import("./Pages/Message/Message"));
-const Stepper = lazy(() => import("./Pages/Stepper/Stepper"));
-const AutoSuggestion = lazy(()=>import('./Pages/AutoSuggestion/AutoSuggestion'))
-const InputFocusPartTwo = lazy(()=>import('./Pages/OTP/OtpFieldTwo'))
-const ScrollOnElement = lazy(()=>import('./Components/InfiniteScroll/ScrollerOnElement'))
-const InfiniteScroller = lazy(()=>import('./Pages/InfiniteScroller/InfiniteScroller'))
-const FeatureFlagPage = lazy(()=>import('./Pages/FeatureFlagPage/FeatureFlagPage'))
-const StopWatch = lazy(()=>import('./Pages/StopWatch/StopWatch'))
-const TicTacToe = lazy(()=>import('./Pages/TicTaeToe/TicTacToe'))
-const FindRingsAndRodCombination = lazy(()=>import('./Pages/RingsAndRods/RingsRods'))
-const MainProgress = lazy(() => import("./Pages/ProgressBarNTimes/MainProgress"));
-const FilterTable = lazy(()=>import('./Pages/FilterTable/FilterTable'))
-const HigherOrderDashBoard = lazy(()=>import('./Pages/HigherOrderComponent/MainOrder'))
-const GridLight  = lazy(()=>import('./Pages/GridLight/GridLight'))
-const SwapComponent = lazy(()=>import('./Pages/SwapCheckedItem/SwapItemComponent'))
-const MultiSelectChip = lazy(()=>import('./Pages/MultiSelectedInput/MultiSelectInput'))
-const TabBasedForm = lazy(()=>import('./Pages/TabBasedForm/TabBasedForm'))
-const SpinBottle = lazy(()=>import('./Pages/SpinBottle/SpinBottle'))
-const Multiplicand = lazy(()=> import('./Pages/Multiplicand/Multiplicand'))
-const TodoApp = lazy(()=>import('./Pages/ToDo/ToDo'))
-const Graph = lazy(()=>import('./Pages/Graph/Graph'))
-const PollWidget = lazy(()=>import('./Pages/PollWidget/Widget'))
-const CommentSection = lazy(()=>import('./Pages/NestedCommentReply/CommentComponent'))
-const FileExplorer = lazy(()=>import('./Pages/FileExplorer/FileExplorer'))
-const CrudFileExplorer  = lazy(()=>import('./Pages/CrudFileExplorer/CrudFileExplorer'))
-const OverlapingCircle = lazy(()=>import('./Pages/OverlappingCircle/OverlappingcCircles'))
+import Carousel from "./Pages/Carousel/Carousel";
+import Header from "./Components/Header/Header";
+import TrafficLight from "./Pages/TrafficLight/TrafficLight";
+import PausableCounter from "./Pages/PausableCounter/PausableCounter";
+import AccordionContainer from "./Pages/Accordion/Accordion";
+import StartRating from "./Pages/StartRating/StarRating";
+import Toggle from "./Components/Toggle/Toggle";
+import MessageComponent from "./Pages/Message/Message";
+import Stepper from "./Pages/Stepper/Stepper";
+import AutoSuggestion from './Pages/AutoSuggestion/AutoSuggestion';
+import InputFocusPartTwo from './Pages/OTP/OtpFieldTwo';
+import ScrollOnElement from './Components/InfiniteScroll/ScrollerOnElement';
+import InfiniteScroller from './Pages/InfiniteScroller/InfiniteScroller';
+import FeatureFlagPage from './Pages/FeatureFlagPage/FeatureFlagPage';
+import StopWatch from './Pages/StopWatch/StopWatch';
+import TicTacToe from './Pages/TicTaeToe/TicTacToe';
+import FindRingsAndRodCombination from './Pages/RingsAndRods/RingsRods';
+import MainProgress from "./Pages/ProgressBarNTimes/MainProgress";
+import FilterTable from './Pages/FilterTable/FilterTable';
+import HigherOrderDashBoard from './Pages/HigherOrderComponent/MainOrder';
+import GridLight from './Pages/GridLight/GridLight';
+import SwapComponent from './Pages/SwapCheckedItem/SwapItemComponent';
+import MultiSelectChip from './Pages/MultiSelectedInput/MultiSelectInput';
+import TabBasedForm from './Pages/TabBasedForm/TabBasedForm';
+import SpinBottle from './Pages/SpinBottle/SpinBottle';
+import Multiplicand from './Pages/Multiplicand/Multiplicand';
+import TodoApp from './Pages/ToDo/ToDo';
+import Graph from './Pages/Graph/Graph';
+import PollWidget from './Pages/PollWidget/Widget';
+import CommentSection from './Pages/NestedCommentReply/CommentComponent';
+import FileExplorer from './Pages/FileExplorer/FileExplorer';
+import CrudFileExplorer from './Pages/CrudFileExplorer/CrudFileExplorer';
+import OverlapingCircle from './Pages/OverlappingCircle/OverlappingcCircles';
 
 
 const App: React.FC = () => {
@@ -44,7 +43,6 @@ const App: React.FC = () => {
 
   return (
     <div className='app'>
-      <Suspense fallback={<Loader />}>
         <header>
           <motion.div
             style={{
@@ -95,8 +93,6 @@ const App: React.FC = () => {
         <TabBasedForm />
         <TodoApp />
         <PollWidget />
-        
-      </Suspense>
     </div>
   );
 };
