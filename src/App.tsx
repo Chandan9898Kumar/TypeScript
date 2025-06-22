@@ -50,7 +50,7 @@ const useIntersectionObserver = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           // Add 2 second delay to see placeholder clearly
-          setTimeout(() => setIsVisible(true), 2000);
+          setTimeout(() => setIsVisible(true), 1000)
           observer.disconnect();
         }
       },
