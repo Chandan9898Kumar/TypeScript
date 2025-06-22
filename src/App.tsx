@@ -35,6 +35,9 @@ const PollWidget = lazy(()=>import('./Pages/PollWidget/Widget'))
 const CommentSection = lazy(()=>import('./Pages/NestedCommentReply/CommentComponent'))
 const FileExplorer = lazy(()=>import('./Pages/FileExplorer/FileExplorer'))
 const CrudFileExplorer  = lazy(()=>import('./Pages/CrudFileExplorer/CrudFileExplorer'))
+const OverlapingCircle = lazy(()=>import('./Pages/overlappingcircles/overlappingcCircles'))
+
+
 const App: React.FC = () => {
 
   const [scrollData, setScrollData] = useState<number>(50);
@@ -61,7 +64,7 @@ const App: React.FC = () => {
             <Toggle />
           </motion.div>
         </header>{" "}
-        
+        <OverlapingCircle />
         <CommentSection />
         <FileExplorer />
         <CrudFileExplorer />
@@ -90,7 +93,7 @@ const App: React.FC = () => {
         <Multiplicand />
         <SpinBottle />
         <TabBasedForm />
-         <TodoApp />
+        <TodoApp />
         <PollWidget />
         
       </Suspense>
