@@ -30,7 +30,7 @@ const NormalProgressBar=()=> {
 
   return (
     <div className={styles.container}>
-      <h1>Progress Bars Demo</h1>
+      <h1>Progress Bars Normal Demo</h1>
 
       <div className={styles.progressContainer}>{progressBars}</div>
 
