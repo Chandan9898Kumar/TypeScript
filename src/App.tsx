@@ -39,7 +39,7 @@ const SpinBottle = lazy(() => import('./Pages/SpinBottle/SpinBottle'));
 const TabBasedForm = lazy(() => import('./Pages/TabBasedForm/TabBasedForm'));
 const TodoApp = lazy(() => import('./Pages/ToDo/ToDo'));
 const PollWidget = lazy(() => import('./Pages/PollWidget/Widget'));
-
+const ModalImageGallery = lazy(()=> import('./Pages/ModalImageGallery/ModalImageGallery'))
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -156,6 +156,7 @@ const App: React.FC = () => {
         <LazyWrapper><TabBasedForm /></LazyWrapper>
         <LazyWrapper><TodoApp /></LazyWrapper>
         <LazyWrapper><PollWidget /></LazyWrapper>
+        <LazyWrapper><ModalImageGallery /></LazyWrapper>
     </div>
   );
 };

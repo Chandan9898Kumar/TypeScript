@@ -1,11 +1,13 @@
-import  { useState, useEffect } from 'react';
-import './style.css';
+import { lazy, Suspense, useEffect, useState } from "react";
+import styles from './Gallery.module.css';
+import { Products } from "./Schema";
+const URL = "https://dummyjson.com/product";
+const ImageContainer = lazy(() => import("./ImageContainer"));
 
-const URL = 'https://dummyjson.com/product';
 
 export default function ModalImageGallery() {
-  const [imagesData, setImageData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [imagesData, setImageData] = useState<Products[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function getImage() {
@@ -14,7 +16,7 @@ export default function ModalImageGallery() {
         const result = await response.json();
         setImageData(result.products);
       } catch (error) {
-        console.log('error');
+        console.log("error", error);
       } finally {
         setIsLoading(false);
       }
@@ -25,8 +27,12 @@ export default function ModalImageGallery() {
 
   return (
     <div>
-      <h1>Image Pop up</h1>
-      
+      <h1 className={styles.h1}>Image Pop up</h1>
+      {!isLoading && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <ImageContainer images={imagesData} />
+        </Suspense>
+      )}
     </div>
   );
 }
