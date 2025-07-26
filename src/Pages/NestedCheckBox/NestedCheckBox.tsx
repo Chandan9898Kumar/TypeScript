@@ -2,7 +2,12 @@ import CheckBoxTree from "./CheckBoxTree";
 import { treeData } from "./Data";
 
 const NestedCheckBox = () => {
-  return <CheckBoxTree treeData={treeData} />;
+  return (
+    <>
+      <h1>Nested Check Box</h1>
+      <CheckBoxTree treeData={treeData} />
+    </>
+  );
 };
 
 export default NestedCheckBox;

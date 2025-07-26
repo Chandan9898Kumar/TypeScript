@@ -1,0 +1,18 @@
+.renderTree {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 5px 5px;
+  margin: 5px;
+}
+
+.child {
+  padding: 5px 20px;
+}
+
+.collaspButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

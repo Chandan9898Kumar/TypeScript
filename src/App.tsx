@@ -40,6 +40,7 @@ const TabBasedForm = lazy(() => import('./Pages/TabBasedForm/TabBasedForm'));
 const TodoApp = lazy(() => import('./Pages/ToDo/ToDo'));
 const PollWidget = lazy(() => import('./Pages/PollWidget/Widget'));
 const ModalImageGallery = lazy(()=> import('./Pages/ModalImageGallery/ModalImageGallery'))
+const NestedCheckBox = lazy(()=>import("./Pages/NestedCheckBox/NestedCheckBox"))
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -128,6 +129,7 @@ const App: React.FC = () => {
         <FileExplorer />
         
         {/* Lazy load when scrolled into view */}
+        <LazyWrapper><NestedCheckBox /></LazyWrapper>
         <LazyWrapper><CrudFileExplorer /></LazyWrapper>
         <LazyWrapper><MultiSelectChip /></LazyWrapper>
         <LazyWrapper><Graph /></LazyWrapper>
