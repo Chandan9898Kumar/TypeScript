@@ -41,6 +41,9 @@ const TodoApp = lazy(() => import('./Pages/ToDo/ToDo'));
 const PollWidget = lazy(() => import('./Pages/PollWidget/Widget'));
 const ModalImageGallery = lazy(()=> import('./Pages/ModalImageGallery/ModalImageGallery'))
 const NestedCheckBox = lazy(()=>import("./Pages/NestedCheckBox/NestedCheckBox"))
+const MainNavigationPage = lazy(() => import('./Pages/CountDownWithNavigation/MainNavigationPage'));
+
+
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -159,6 +162,7 @@ const App: React.FC = () => {
         <LazyWrapper><TodoApp /></LazyWrapper>
         <LazyWrapper><PollWidget /></LazyWrapper>
         <LazyWrapper><ModalImageGallery /></LazyWrapper>
+        <LazyWrapper><MainNavigationPage /></LazyWrapper>
     </div>
   );
 };
