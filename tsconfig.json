@@ -20,7 +20,7 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"], // Include necessary library files
 
     // Module Resolution
-    "moduleResolution": "Node", // Use Node.js style module resolution
+    "moduleResolution": "Bundler", // Modern module resolution for bundlers
     "baseUrl": "src/", // Base directory for module resolution
     "esModuleInterop": true, // Better interop between different module systems
     "allowSyntheticDefaultImports": true, // Allow default imports from modules without exports
