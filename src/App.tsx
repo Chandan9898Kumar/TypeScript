@@ -42,7 +42,7 @@ const PollWidget = lazy(() => import('./Pages/PollWidget/Widget'));
 const ModalImageGallery = lazy(()=> import('./Pages/ModalImageGallery/ModalImageGallery'))
 const NestedCheckBox = lazy(()=>import("./Pages/NestedCheckBox/NestedCheckBox"))
 const MainNavigationPage = lazy(() => import('./Pages/CountDownWithNavigation/MainNavigationPage'));
-
+const SwatchBoxMainContainer = lazy(() => import('./Pages/SwatchBox/SwatchBox'));
 
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
@@ -163,6 +163,7 @@ const App: React.FC = () => {
         <LazyWrapper><PollWidget /></LazyWrapper>
         <LazyWrapper><ModalImageGallery /></LazyWrapper>
         <LazyWrapper><MainNavigationPage /></LazyWrapper>
+        <LazyWrapper><SwatchBoxMainContainer /></LazyWrapper>
     </div>
   );
 };
