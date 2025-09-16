@@ -79,7 +79,7 @@ const ContainerBox = ({ colors }: ContainerBoxProps) => {
       <HeadBox colorSelected={colorSelected} />
 
       <div className="color-item">
-        {colors.map((item) => (
+        {colors?.map((item) => (
           <SwatchBox
             item={item}
             key={item}
