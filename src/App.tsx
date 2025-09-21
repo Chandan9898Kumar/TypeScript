@@ -43,7 +43,7 @@ const ModalImageGallery = lazy(()=> import('./Pages/ModalImageGallery/ModalImage
 const NestedCheckBox = lazy(()=>import("./Pages/NestedCheckBox/NestedCheckBox"))
 const MainNavigationPage = lazy(() => import('./Pages/CountDownWithNavigation/MainNavigationPage'));
 const SwatchBoxMainContainer = lazy(() => import('./Pages/SwatchBox/SwatchBox'));
-
+const VirtualList = lazy(() => import('./Pages/Virtualization/Virtualization'));
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -127,6 +127,7 @@ const App: React.FC = () => {
           </motion.div>
         </header>{" "}
         {/* Load immediately - visible on page load */}
+        
         <OverlapingCircle />
         <CommentSection />
         <FileExplorer />
@@ -164,6 +165,7 @@ const App: React.FC = () => {
         <LazyWrapper><ModalImageGallery /></LazyWrapper>
         <LazyWrapper><MainNavigationPage /></LazyWrapper>
         <LazyWrapper><SwatchBoxMainContainer /></LazyWrapper>
+        <LazyWrapper><VirtualList /></LazyWrapper>
     </div>
   );
 };
