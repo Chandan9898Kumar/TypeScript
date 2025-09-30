@@ -41,7 +41,7 @@ const Virtualization = ({
 
   const visibleData = data.slice(startIndex, endIndex);
 
-  console.log(startIndex, endIndex, visibleData, visibleData.length);
+ 
   return (
     <div
       style={{
