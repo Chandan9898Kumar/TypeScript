@@ -23,7 +23,7 @@ function RedoUndo() {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (total.current === 0 && e.target.value.length) {
       index.current = [""];
     }
