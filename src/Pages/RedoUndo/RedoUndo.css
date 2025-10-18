@@ -1,0 +1,48 @@
+.redo-undo-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.redo-undo-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.redo-undo-container button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.redo-undo-container button:hover:not(:disabled) {
+  background: #e0e0e0;
+}
+
+.redo-undo-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.redo-undo-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.redo-undo-container p {
+  margin: 0;
+  font-weight: bold;
+}

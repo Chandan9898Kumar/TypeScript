@@ -6,6 +6,7 @@
     "removeComments": true, // Removes comments from output files to reduce size
     "importHelpers": true, // Import helpers from tslib to reduce bundle size
     "allowImportingTsExtensions": true,
+    "ignoreDeprecations": "6.0", // Silence baseUrl deprecation warning
 
     // Type Checking
     "strict": true, // Enable all strict type checking options
@@ -21,7 +22,7 @@
 
     // Module Resolution
     "moduleResolution": "Bundler", // Modern module resolution for bundlers
-    "baseUrl": "src/", // Base directory for module resolution
+    "baseUrl": "src/", // Base directory for module resolution (deprecated but still functional)
     "esModuleInterop": true, // Better interop between different module systems
     "allowSyntheticDefaultImports": true, // Allow default imports from modules without exports
 

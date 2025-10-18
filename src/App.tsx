@@ -44,6 +44,7 @@ const NestedCheckBox = lazy(()=>import("./Pages/NestedCheckBox/NestedCheckBox"))
 const MainNavigationPage = lazy(() => import('./Pages/CountDownWithNavigation/MainNavigationPage'));
 const SwatchBoxMainContainer = lazy(() => import('./Pages/SwatchBox/SwatchBox'));
 const VirtualList = lazy(() => import('./Pages/Virtualization/Virtualization'));
+const RedoUndo = lazy(()=>import('./Pages/RedoUndo/RedoUndo'))
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -166,6 +167,8 @@ const App: React.FC = () => {
         <LazyWrapper><MainNavigationPage /></LazyWrapper>
         <LazyWrapper><SwatchBoxMainContainer /></LazyWrapper>
         <LazyWrapper><VirtualList /></LazyWrapper>
+        <LazyWrapper><RedoUndo /></LazyWrapper>
+
     </div>
   );
 };
