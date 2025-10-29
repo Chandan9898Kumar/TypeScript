@@ -1,0 +1,66 @@
+.osillation-main {
+  align-content: center;
+  background-color: #323336;
+  height: 100lvh;
+}
+
+.counter-app-container {
+  background: rgb(94, 152, 63);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+.counter-app-container .btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn button {
+  font-size: 1.25rem;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: #93a0b9;
+  color: #fff;
+}
+
+.secondary {
+  background-color: cornflowerblue;
+  color: #fff;
+}
+
+.natives {
+  background-color: rebeccapurple;
+  color: aliceblue;
+}
+
+h1 {
+  color: beige;
+  margin: 0;
+}
+
+p {
+  color: aliceblue;
+  margin: 8px 0;
+}

@@ -46,6 +46,8 @@ const SwatchBoxMainContainer = lazy(() => import('./Pages/SwatchBox/SwatchBox'))
 const VirtualList = lazy(() => import('./Pages/Virtualization/Virtualization'));
 const RedoUndo = lazy(()=>import('./Pages/RedoUndo/RedoUndo'))
 const DropDownSelectItem = lazy(()=>import('./Pages/DropDownSelectItem/DropDownItem'))
+const OscillatingCounter = lazy(()=>import('./Pages/CounterOsillation/CounterOsillation'))
+
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -170,6 +172,7 @@ const App: React.FC = () => {
         <LazyWrapper><VirtualList /></LazyWrapper>
         <LazyWrapper><RedoUndo /></LazyWrapper>
         <LazyWrapper><DropDownSelectItem /></LazyWrapper>
+        <LazyWrapper><OscillatingCounter /></LazyWrapper>
 
     </div>
   );
