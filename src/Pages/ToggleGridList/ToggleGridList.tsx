@@ -151,3 +151,65 @@ export default function ToggleGridList() {
     </div>
   );
 }
+
+// Also we can use like this:
+
+/**
+
+
+import React, { useState, useRef, useCallback } from 'react';
+export default function App() {
+  const [cats, setCats] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const page = useRef(1);
+  const fetchCats = async () => {
+    setIsLoading(true);
+    const response = await fetch(
+      `https://api.artic.edu/api/v1/artworks/search?q=cats&page=${page.current}`
+    );
+    const data = await response.json();
+    setIsLoading(false);
+    page.current += 1;
+    setCats((prevData) => [...prevData, ...data.data]);
+  };
+  const observer = useRef();
+  const lastAnchor = useCallback(
+    (node) => {
+      if (!node || isLoading) {
+        console.log(node, 'return >>>>>>>>>>>', isLoading);
+        return;
+      }
+      if (observer.current) {
+        console.log('disconnect >>>>>>>>>>>', observer.current);
+        observer.current.disconnect();
+      }
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          fetchCats();
+        }
+      });
+      console.log(node, 'node', isLoading, observer.current);
+      observer.current.observe(node);
+    },
+    [isLoading]
+  );
+
+  console.log(cats, 'cats');
+  return (
+    <div className="App">
+      <div>
+        {cats.map((cat) => (
+          <img
+            key={cat.id}
+            src={cat?.thumbnail?.lqip}
+            height="150"
+            width="150"
+          />
+        ))}
+      </div>
+      <div ref={lastAnchor}>Loading...</div>
+    </div>
+  );
+}
+
+ */
