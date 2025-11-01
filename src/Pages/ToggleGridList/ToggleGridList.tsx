@@ -121,7 +121,7 @@ export default function ToggleGridList() {
         </button>
       </div>
 
-      {!productsData.length && <div className="LOAD">Loading...</div>}
+      {!productsData.length && <div className="load">Loading...</div>}
 
       <div
         className="container"
