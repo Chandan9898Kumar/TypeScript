@@ -48,6 +48,7 @@ const RedoUndo = lazy(()=>import('./Pages/RedoUndo/RedoUndo'))
 const DropDownSelectItem = lazy(()=>import('./Pages/DropDownSelectItem/DropDownItem'))
 const OscillatingCounter = lazy(()=>import('./Pages/CounterOsillation/CounterOsillation'))
 const ToggleGridList = lazy(() => import('./Pages/ToggleGridList/ToggleGridList'));
+const NestedAccordionApp = lazy(()=>import('./Pages/NestedAccordion/NestedAccordion'))
 // Intersection Observer Hook
 const useIntersectionObserver = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -131,7 +132,7 @@ const App: React.FC = () => {
           </motion.div>
         </header>{" "}
         {/* Load immediately - visible on page load */}
-      
+
         <OverlapingCircle />
         <CommentSection />
         <FileExplorer />
@@ -174,6 +175,7 @@ const App: React.FC = () => {
         <LazyWrapper><DropDownSelectItem /></LazyWrapper>
         <LazyWrapper><OscillatingCounter /></LazyWrapper>
         <LazyWrapper><ToggleGridList /></LazyWrapper>
+        <LazyWrapper><NestedAccordionApp /></LazyWrapper>
 
     </div>
   );
