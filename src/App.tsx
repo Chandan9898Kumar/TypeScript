@@ -176,7 +176,6 @@ const App: React.FC = () => {
         <LazyWrapper><OscillatingCounter /></LazyWrapper>
         <LazyWrapper><ToggleGridList /></LazyWrapper>
         <LazyWrapper><NestedAccordionApp /></LazyWrapper>
-
     </div>
   );
 };
