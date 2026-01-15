@@ -3,14 +3,14 @@ import { useState, useEffect, useRef, Suspense, lazy, ReactNode } from "react";
 import "./App.css";
 import Loader from "./Components/Loader/Loader";
 
-// Direct imports for above-the-fold content
+// Direct imports for above-the-fold content.
 import Header from "./Components/Header/Header";
 import Toggle from "./Components/Toggle/Toggle";
 import OverlapingCircle from './Pages/OverlappingCircle/OverlappingcCircles';
 import CommentSection from './Pages/NestedCommentReply/CommentComponent';
 import FileExplorer from './Pages/FileExplorer/FileExplorer';
 
-// Lazy imports for below-the-fold content
+// Lazy imports for below-the-fold content.
 const CrudFileExplorer = lazy(() => import('./Pages/CrudFileExplorer/CrudFileExplorer'));
 const MultiSelectChip = lazy(() => import('./Pages/MultiSelectedInput/MultiSelectInput'));
 const Graph = lazy(() => import('./Pages/Graph/Graph'));
