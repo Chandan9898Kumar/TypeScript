@@ -3,7 +3,7 @@ import { FileNode } from "./Schema";
 export const addChildToFolder = (
   files: FileNode[],
   child: FileNode,
-  id: string | number
+  id: string | number,
 ): FileNode[] => {
   return files.map((item) => {
     if (item.id === id) {
@@ -17,3 +17,21 @@ export const addChildToFolder = (
     return item;
   });
 };
+
+export function deleteItemFromFolder(
+  data: FileNode[],
+  id: number | string,
+): FileNode[] {
+  for (const x of data) {
+    if (x.id === id) {
+      const index = data.indexOf(x);
+      data.splice(index, 1);
+    }
+
+    if (x.children && x.children.length) {
+      deleteItemFromFolder(x.children, id);
+    }
+  }
+
+  return data;
+}

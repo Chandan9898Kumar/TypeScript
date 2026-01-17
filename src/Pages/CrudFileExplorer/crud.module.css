@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 
-.btn[data-folder='false'] {
+.btn[data-folder="false"] {
   cursor: default;
 }
 
@@ -67,4 +67,11 @@
 .message {
   color: red;
   font-size: 20px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

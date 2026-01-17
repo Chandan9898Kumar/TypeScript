@@ -7,9 +7,14 @@ import styles from "./crud.module.css";
 interface FileItems {
   file: FileNode;
   handleSetFileType: (element: FileNode, id: number | string) => void;
+  handleDeleteItem: (id: number | string) => void;
 }
 
-const FileItems = ({ file, handleSetFileType }: FileItems) => {
+const FileItems = ({
+  file,
+  handleSetFileType,
+  handleDeleteItem,
+}: FileItems) => {
   const [expand, setExpand] = useState(false);
   const [fileType, setFileType] = useState("");
 
@@ -28,7 +33,13 @@ const FileItems = ({ file, handleSetFileType }: FileItems) => {
           {file.isFolder ? (expand ? "📂" : "📁") : "📄"} {file.name}
         </button>
 
-        {file.isFolder && <Button setFileType={setFileType} />}
+        {file.isFolder && (
+          <div className={styles.buttonGroup}>
+            <Button setFileType={setFileType} />
+
+            <button onClick={() => handleDeleteItem(file.id)}>delete</button>
+          </div>
+        )}
       </div>
 
       {fileType && (
@@ -50,6 +61,7 @@ const FileItems = ({ file, handleSetFileType }: FileItems) => {
                 key={fileItem.id}
                 file={fileItem}
                 handleSetFileType={handleSetFileType}
+                handleDeleteItem={handleDeleteItem}
               />
             );
           })}

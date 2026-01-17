@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fileData, FileNode } from "./Schema";
-import { addChildToFolder } from "./Utils";
+import { addChildToFolder, deleteItemFromFolder } from "./Utils";
 
 import FileItems from "./FileItems";
 
@@ -9,6 +9,12 @@ const CrudFileExplorer = () => {
 
   const handleSetFileType = (element: FileNode, id: number | string) => {
     setFiles((prevItem) => addChildToFolder(prevItem, element, id));
+  };
+
+  const handleDeleteItem = (id: number | string) => {
+    setFiles((prevItem) =>
+      deleteItemFromFolder(JSON.parse(JSON.stringify(prevItem)), id),
+    );
   };
 
   return (
@@ -20,6 +26,7 @@ const CrudFileExplorer = () => {
             key={fileItem.id}
             file={fileItem}
             handleSetFileType={handleSetFileType}
+            handleDeleteItem={handleDeleteItem}
           />
         );
       })}
