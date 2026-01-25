@@ -6,13 +6,14 @@ import styles from "./circle.module.css";
 
 export default function OverlapingCircle() {
   // store the configuration of each circle
-  const [elementsCoordinates, setElementsCoordinates] = useState<CircleOverlapSchema[]>([]);
+  const [elementsCoordinates, setElementsCoordinates] = useState<
+    CircleOverlapSchema[]
+  >([]);
 
   // Set a default size that can be changed
   const [circleSize] = useState<number>(100);
 
   useEffect(() => {
-
     const draw = (event: MouseEvent) => {
       const xCordinate = event.clientX;
       const yCordinate = event.clientY;
@@ -44,8 +45,6 @@ export default function OverlapingCircle() {
       document.removeEventListener("click", draw);
     };
   }, [circleSize]);
-
- 
 
   return (
     <div className={styles.main}>
