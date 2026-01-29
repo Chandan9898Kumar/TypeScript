@@ -2,7 +2,9 @@ import { useState, useEffect, MouseEvent } from "react";
 import styles from "./grid.module.css";
 
 export default function GridLight() {
+
   const [lightOn, setLightOn] = useState<number[]>([]);
+  
   const GRID_LIGHT = [
     [1, 1, 1],
     [1, 1, 1],
